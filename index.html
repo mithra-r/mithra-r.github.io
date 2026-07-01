@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mithra Iyangar Ramesh — Aerospace Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1625;
+    --surface: #0F2033;
+    --surface2: #152840;
+    --accent: #00C9E4;
+    --gold: #F4A833;
+    --text: #E8F0F8;
+    --muted: #7A9AB8;
+    --border: rgba(0,201,228,0.13);
+    --border2: rgba(255,255,255,0.06);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+  /* NAV */
+  nav {
+    position:sticky; top:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 48px;
+    background:rgba(11,22,37,0.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.04em; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:32px; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:13px; font-weight:500; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta {
+    background:rgba(0,201,228,0.1); color:var(--accent);
+    border:1px solid rgba(0,201,228,0.25); padding:8px 18px;
+    border-radius:5px; font-size:12px; font-weight:600; cursor:pointer;
+    font-family:'Space Grotesk',sans-serif; text-decoration:none; transition:background 0.2s;
+  }
+  .nav-cta:hover { background:rgba(0,201,228,0.18); }
+
+  /* HERO */
+  #hero {
+    display:flex; align-items:center; gap:48px;
+    padding:72px 48px 64px; min-height:90vh;
+  }
+  .hero-left { flex:1; }
+  .hero-eyebrow {
+    font-family:'JetBrains Mono',monospace; font-size:11px;
+    color:var(--accent); letter-spacing:0.15em; text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .hero-name {
+    font-family:'Space Grotesk',sans-serif; font-size:52px;
+    font-weight:700; line-height:1.05; color:#F0F6FF; margin-bottom:18px;
+  }
+  .hero-name span { color:var(--accent); }
+  .hero-desc {
+    color:var(--muted); font-size:15px; line-height:1.75;
+    max-width:440px; margin-bottom:32px; font-weight:300;
+  }
+  .hero-buttons { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px; }
+  .btn-primary {
+    background:var(--accent); color:#0B1625; border:none;
+    padding:12px 24px; border-radius:5px; font-weight:700;
+    font-size:13px; cursor:pointer; font-family:'Space Grotesk',sans-serif;
+    text-decoration:none; display:inline-block;
+  }
+  .btn-secondary {
+    background:transparent; color:var(--text);
+    border:1px solid rgba(255,255,255,0.15);
+    padding:12px 24px; border-radius:5px; font-weight:500;
+    font-size:13px; cursor:pointer; font-family:'Space Grotesk',sans-serif;
+    text-decoration:none; display:inline-block;
+  }
+  .hero-stats { display:flex; gap:24px; align-items:center; }
+  .stat { text-align:left; }
+  .stat-num { font-size:24px; font-weight:700; color:var(--gold); font-family:'Space Grotesk',sans-serif; }
+  .stat-label { font-size:10px; color:var(--muted); font-family:'JetBrains Mono',monospace; margin-top:2px; }
+  .stat-divider { width:1px; height:36px; background:var(--border2); }
+
+  .hero-right { width:320px; flex-shrink:0; }
+  .fea-panel {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:8px; overflow:hidden;
+  }
+  .fea-header {
+    padding:9px 14px; border-bottom:1px solid rgba(0,201,228,0.1);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .fea-header span { font-size:10px; color:var(--muted); font-family:'JetBrains Mono',monospace; }
+  .fea-live { color:var(--accent); display:flex; align-items:center; gap:5px; }
+  .fea-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block; }
+  .fea-footer { padding:7px 14px; border-top:1px solid rgba(0,201,228,0.08); }
+  .fea-colorbar-row { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+  .fea-mpa { font-size:9px; color:var(--muted); font-family:'JetBrains Mono',monospace; }
+  .fea-meta { display:flex; justify-content:space-between; }
+  .fea-meta span { font-size:9px; color:var(--muted); font-family:'JetBrains Mono',monospace; }
+
+  /* SECTIONS */
+  section { padding:64px 48px; border-top:1px solid var(--border2); }
+  section:nth-child(even) { background:rgba(15,32,51,0.5); }
+  .section-label {
+    font-size:10px; color:var(--accent); letter-spacing:0.15em;
+    text-transform:uppercase; font-family:'JetBrains Mono',monospace;
+    margin-bottom:24px;
+  }
+
+  /* ABOUT */
+  .about-text {
+    font-size:15px; color:#A8C0D6; line-height:1.8;
+    max-width:680px; font-weight:300;
+  }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:8px; padding:24px 28px;
+    border-left:3px solid var(--accent);
+  }
+  .exp-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px; }
+  .exp-title { font-size:15px; font-weight:600; color:var(--text); }
+  .exp-date { font-size:11px; color:var(--muted); font-family:'JetBrains Mono',monospace; white-space:nowrap; }
+  .exp-org { font-size:13px; color:var(--accent); margin-bottom:14px; }
+  .exp-bullets { list-style:none; }
+  .exp-bullets li {
+    font-size:13px; color:var(--muted); line-height:1.65;
+    padding:3px 0 3px 16px; position:relative; font-weight:300;
+  }
+  .exp-bullets li::before {
+    content:'→'; position:absolute; left:0;
+    color:var(--accent); font-size:11px; top:4px;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .project-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:8px; overflow:hidden; display:flex; flex-direction:column;
+  }
+  .project-bar { height:3px; }
+  .project-body { padding:20px 20px 22px; flex:1; display:flex; flex-direction:column; }
+  .project-meta { font-size:9px; color:var(--muted); font-family:'JetBrains Mono',monospace; margin-bottom:10px; }
+  .project-title { font-size:13px; font-weight:600; line-height:1.45; margin-bottom:10px; color:var(--text); }
+  .project-desc { font-size:12px; color:var(--muted); line-height:1.65; font-weight:300; margin-bottom:14px; flex:1; }
+  .project-result {
+    background:rgba(244,168,51,0.08); border-left:2px solid var(--gold);
+    padding:7px 10px; border-radius:0 4px 4px 0; margin-bottom:14px;
+    font-size:11px; color:#C8A060; line-height:1.5;
+  }
+  .tag-row { display:flex; flex-wrap:wrap; gap:5px; }
+  .tag {
+    font-size:9px; background:rgba(0,201,228,0.07);
+    color:var(--muted); padding:3px 8px; border-radius:3px;
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  /* SKILLS */
+  .skills-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
+  .skill-group-label { font-size:10px; color:var(--muted); font-family:'JetBrains Mono',monospace; margin-bottom:10px; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .skill-tag {
+    padding:5px 12px; border-radius:4px; font-size:11px; font-weight:500;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .tag-cyan { background:rgba(0,201,228,0.1); color:var(--accent); }
+  .tag-gold { background:rgba(244,168,51,0.12); color:var(--gold); }
+  .tag-grey { background:rgba(168,192,214,0.1); color:#A8C0D6; }
+  .tag-teal { background:rgba(0,180,160,0.1); color:#00B4A0; }
+
+  /* EDUCATION */
+  .edu-list { display:flex; flex-direction:column; gap:0; }
+  .edu-item {
+    display:flex; gap:24px; padding:20px 0;
+    border-bottom:1px solid var(--border2);
+  }
+  .edu-item:last-of-type { border-bottom:none; }
+  .edu-date { width:100px; flex-shrink:0; font-size:11px; color:var(--muted); font-family:'JetBrains Mono',monospace; padding-top:3px; }
+  .edu-degree { font-size:14px; font-weight:600; color:var(--text); margin-bottom:3px; }
+  .edu-school { font-size:13px; color:var(--accent); margin-bottom:4px; }
+  .edu-grade { font-size:12px; color:var(--muted); }
+  .edu-note { font-size:11px; color:var(--muted); font-family:'JetBrains Mono',monospace; margin-top:18px; padding:10px 14px; background:rgba(0,201,228,0.05); border-radius:5px; border-left:2px solid var(--accent); }
+
+  /* CONTACT / FOOTER */
+  footer {
+    padding:32px 48px; border-top:1px solid var(--border);
+    background:#0A1420;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  .footer-links { display:flex; gap:24px; flex-wrap:wrap; }
+  .footer-links a { font-size:12px; color:var(--muted); text-decoration:none; font-family:'JetBrains Mono',monospace; }
+  .footer-links a:hover { color:var(--accent); }
+  .footer-copy { font-size:11px; color:#3A5060; }
+
+  /* RESPONSIVE */
+  @media (max-width:900px) {
+    nav { padding:14px 24px; }
+    .nav-links { display:none; }
+    #hero { flex-direction:column; padding:48px 24px 40px; min-height:auto; }
+    .hero-right { width:100%; }
+    .hero-name { font-size:36px; }
+    section { padding:48px 24px; }
+    .projects-grid { grid-template-columns:1fr; }
+    .skills-grid { grid-template-columns:1fr 1fr; }
+    footer { padding:24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MIR<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+  </div>
+  <a href="mailto:mithrar2000@gmail.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">M.Sc. Aerospace Engineering &nbsp;·&nbsp; TU Munich</p>
+    <h1 class="hero-name">Mithra<br>Iyangar<br>Ramesh<span>.</span></h1>
+    <p class="hero-desc">
+      FEM/FEA specialist with expertise in composite structural optimization and verification across flight-critical systems. Research experience at TU Munich and DLR Braunschweig, working to CS-22 and CS-25 airworthiness standards.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn-primary">View projects ↓</a>
+      <a href="https://www.linkedin.com/in/mithra-r-iyangar" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Major projects</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">FEA tools</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">CS-22/25</div><div class="stat-label">Standards</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="fea-panel">
+      <div class="fea-header">
+        <span>von_mises_stress.frd</span>
+        <span class="fea-live"><span class="fea-dot" id="live-dot"></span>LIVE</span>
+      </div>
+      <canvas id="fea-canvas" width="320" height="200" style="display:block;width:100%;"></canvas>
+      <div class="fea-footer">
+        <div class="fea-colorbar-row">
+          <span class="fea-mpa">0</span>
+          <canvas id="cbar" width="220" height="8" style="flex:1;height:8px;border-radius:4px;"></canvas>
+          <span class="fea-mpa">σ<sub>max</sub></span>
+        </div>
+        <div class="fea-meta">
+          <span id="iter-lbl">Iter: 0</span>
+          <span id="comp-lbl">Compliance: —</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">About</p>
+  <p class="about-text">
+    Aerospace engineer with hands-on expertise in Finite Element Analysis (FEM/FEA), composite structural optimization, and structural verification across flight-critical systems. My master's thesis, conducted in collaboration with DLR Braunschweig, focused on characterizing realizable lamination parameter domains for practical composite layups — bridging the gap between mathematical optimization and manufacturable composite designs. At TU Munich, I worked on topology optimization of structural components and structural verification under CS-22 airworthiness standards. I am proficient in GFEM and DFEM modelling using HyperWorks, Abaqus CAE, and Ansys, and have validated FEM against destructive physical test data for Ti6Al4V, directly replicating Full Scale Test (FST) correlation workflows.
+  </p>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Student Research Assistant</div>
+        <div class="exp-org">Technical University of Munich (TUM) &nbsp;·&nbsp; Garching</div>
+      </div>
+      <div class="exp-date">07/2022 – 03/2025</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Design feasibility checks in accordance with fail-safe design strategies and Additive Manufacturing (AM) constraints including overhang angle analysis.</li>
+      <li>Dimensioned structural parts for production, including manufacturing constraints, deriving technical drawings under CS-22 airworthiness standards.</li>
+      <li>Performed linear and non-linear FEA for structural parts using B-basis allowables obtained from physical test results.</li>
+      <li>Conducted topology optimization to reduce the mass of a bell crank component under stress and displacement constraints.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Selected projects</p>
+  <div class="projects-grid">
+
+    <!-- Thesis -->
+    <div class="project-card">
+      <div class="project-bar" style="background:var(--accent);"></div>
+      <div class="project-body">
+        <p class="project-meta">MASTER'S THESIS &nbsp;·&nbsp; TU MUNICH / DLR &nbsp;·&nbsp; 2024–2025</p>
+        <p class="project-title">Characterizing lamination parameters realizable domain for practical composite layups</p>
+        <p class="project-desc">
+          Derived analytical expressions for the realizable domain of lamination parameters under four design guidelines — disorientation, damage tolerance, contiguity, and balance. Validated against brute-force enumeration of symmetric laminates. Integrated into a bi-level optimization framework and benchmarked under multiple load cases.
+        </p>
+        <div class="project-result">
+          69.3% safety factor mismatch reduction (tension-dominant); complete elimination for coupled shear/compression load cases.
+        </div>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">IPOPT</span>
+          <span class="tag">DLR Lightworks</span>
+          <span class="tag">CLT</span>
+          <span class="tag">Bi-level opt.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Minor Project -->
+    <div class="project-card">
+      <div class="project-bar" style="background:var(--gold);"></div>
+      <div class="project-body">
+        <p class="project-meta">B.ENG. PROJECT &nbsp;·&nbsp; RVCE BANGALORE &nbsp;·&nbsp; 2020–2021</p>
+        <p class="project-title">Shape optimization of drain holes in a gas turbine shaft</p>
+        <p class="project-desc">
+          Minimized stress concentration around drain holes in an Inconel 718 gas turbine shaft across five critical engine operating points. Tested elliptical, square, and rectangular cutout geometries at varying orientations (15° intervals) under combined axial, torsional, and rotational loads. Performed mesh convergence study and validated against analytical stress concentration factor.
+        </p>
+        <div class="project-result">
+          Rectangular hole with aspect ratio 2–2.5 yields minimum maximum principal stress; optimal orientation governed by axial/torque load ratio.
+        </div>
+        <div class="tag-row">
+          <span class="tag">Abaqus CAE</span>
+          <span class="tag">CATIA V5</span>
+          <span class="tag">HyperMesh</span>
+          <span class="tag">Inconel 718</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Major Project -->
+    <div class="project-card">
+      <div class="project-bar" style="background:#3B82A0;"></div>
+      <div class="project-body">
+        <p class="project-meta">B.ENG. PROJECT &nbsp;·&nbsp; RVCE BANGALORE &nbsp;·&nbsp; 2020–2021</p>
+        <p class="project-title">Influence of lattice parameters on fatigue life of 18% Ni steel</p>
+        <p class="project-desc">
+          Characterized retained austenite in heat-treated 18Ni Grade M250 steel via X-ray diffraction using Williamson-Hall analysis. Performed high-cycle fatigue testing on dog-bone specimens on a Universal Testing Machine at three aging temperatures (510°C, 540°C, 620°C). Correlated lattice parameters and austenite percentage with fatigue life.
+        </p>
+        <div class="project-result">
+          Austenite % increases with aging time; micro strain values confirm material homogeneity and rule out significant lattice defects.
+        </div>
+        <div class="tag-row">
+          <span class="tag">XRD</span>
+          <span class="tag">UTM (HCF)</span>
+          <span class="tag">Williamson-Hall</span>
+          <span class="tag">MATLAB</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Skills &amp; tools</p>
+  <div class="skills-grid">
+    <div>
+      <p class="skill-group-label">FEA software</p>
+      <div class="skill-tags">
+        <span class="skill-tag tag-cyan">Abaqus CAE</span>
+        <span class="skill-tag tag-cyan">Ansys</span>
+        <span class="skill-tag tag-cyan">HyperWorks</span>
+        <span class="skill-tag tag-cyan">Optistruct</span>
+        <span class="skill-tag tag-cyan">Nastran/Patran</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-label">Optimization methods</p>
+      <div class="skill-tags">
+        <span class="skill-tag tag-gold">Topology opt.</span>
+        <span class="skill-tag tag-gold">Shape opt.</span>
+        <span class="skill-tag tag-gold">Lamination parameters</span>
+        <span class="skill-tag tag-gold">Bi-level opt.</span>
+        <span class="skill-tag tag-gold">SIMP method</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-label">CAD</p>
+      <div class="skill-tags">
+        <span class="skill-tag tag-grey">Siemens NX</span>
+        <span class="skill-tag tag-grey">SolidWorks</span>
+        <span class="skill-tag tag-grey">CATIA V5</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-label">Programming</p>
+      <div class="skill-tags">
+        <span class="skill-tag tag-grey">Python</span>
+        <span class="skill-tag tag-grey">MATLAB/Simulink</span>
+        <span class="skill-tag tag-grey">C/C++</span>
+        <span class="skill-tag tag-grey">LaTeX</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-label">Aerospace standards</p>
+      <div class="skill-tags">
+        <span class="skill-tag tag-teal">CS-22</span>
+        <span class="skill-tag tag-teal">CS-25</span>
+        <span class="skill-tag tag-teal">HSB</span>
+        <span class="skill-tag tag-teal">Bruhn</span>
+        <span class="skill-tag tag-teal">MMPDS</span>
+      </div>
+    </div>
+    <div>
+      <p class="skill-group-label">AI / data</p>
+      <div class="skill-tags">
+        <span class="skill-tag tag-grey">Pandas</span>
+        <span class="skill-tag tag-grey">NumPy</span>
+        <span class="skill-tag tag-grey">scikit-learn</span>
+        <span class="skill-tag tag-grey">PyTorch</span>
+        <span class="skill-tag tag-grey">Matplotlib</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Education</p>
+  <div class="edu-list">
+    <div class="edu-item">
+      <div class="edu-date">04/2022 – 05/2025</div>
+      <div>
+        <div class="edu-degree">M.Sc. Aerospace Engineering</div>
+        <div class="edu-school">Technical University of Munich (TUM)</div>
+        <div class="edu-grade">CGPA: 2.0 &nbsp;·&nbsp; Thesis: Characterizing Lamination Parameters Realizable Domain for Practical Composite Layups (in collaboration with DLR)</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-date">08/2017 – 08/2021</div>
+      <div>
+        <div class="edu-degree">B.Eng. Aerospace Engineering</div>
+        <div class="edu-school">R V College of Engineering (RVCE), Bangalore</div>
+        <div class="edu-grade">CGPA: 1.8</div>
+      </div>
+    </div>
+  </div>
+  <p class="edu-note">* Grades are shown according to the German grading system, where 1.0 is the highest achievable grade.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="mailto:mithrar2000@gmail.com">mithrar2000@gmail.com</a>
+    <a href="tel:+4916324492475">+49 163 244 9275</a>
+    <a href="https://www.linkedin.com/in/mithra-r-iyangar" target="_blank">linkedin.com/in/mithra-r-iyangar</a>
+    <a href="#">Munich, Germany</a>
+  </div>
+  <p class="footer-copy">Mithra Iyangar Ramesh · Aerospace Engineer</p>
+</footer>
+
+<script>
+(function(){
+  // FEA Canvas animation
+  const canvas = document.getElementById('fea-canvas');
+  const ctx = canvas.getContext('2d');
+  const NX=52, NY=32, CW=320, CH=200;
+  canvas.width=CW; canvas.height=CH;
+  const DX=CW/NX, DY=CH/NY;
+
+  // Colorbar
+  const cbar=document.getElementById('cbar');
+  const cc=cbar.getContext('2d');
+  cbar.width=220; cbar.height=8;
+  const ci=cc.createImageData(220,8);
+  for(let x=0;x<220;x++){
+    const [r,g,b]=sc(x/219);
+    for(let y=0;y<8;y++){const i=(y*220+x)*4; ci.data[i]=r;ci.data[i+1]=g;ci.data[i+2]=b;ci.data[i+3]=255;}
+  }
+  cc.putImageData(ci,0,0);
+
+  function sc(s){
+    s=Math.max(0,Math.min(1,s));
+    let r,g,b;
+    if(s<0.25){r=0;g=Math.round(s*4*255);b=255;}
+    else if(s<0.5){r=0;g=255;b=Math.round((1-(s-0.25)*4)*255);}
+    else if(s<0.75){r=Math.round((s-0.5)*4*255);g=255;b=0;}
+    else{r=255;g=Math.round((1-(s-0.75)*4)*255);b=0;}
+    return[r,g,b];
+  }
+
+  let t=0, iter=0, dotOn=true, lastDot=0, lastT=0;
+  const iterLbl=document.getElementById('iter-lbl');
+  const compLbl=document.getElementById('comp-lbl');
+  const liveDot=document.getElementById('live-dot');
+
+  function draw(){
+    const id=ctx.createImageData(CW,CH);
+    const d=id.data;
+    for(let j=0;j<NY;j++){
+      for(let i=0;i<NX;i++){
+        const xn=i/NX, yn=j/NY;
+        const s=0.5+0.28*Math.sin(xn*Math.PI*2.8+t*0.45)+0.14*Math.sin(yn*Math.PI*3.5-t*0.32)+0.08*Math.sin((xn*1.5+yn)*Math.PI*5+t*0.75);
+        const[r,g,b]=sc(s);
+        const px0=Math.round(i*DX), py0=Math.round(j*DY);
+        const pw=Math.ceil(DX), ph=Math.ceil(DY);
+        for(let dy=0;dy<ph;dy++){const py=py0+dy; if(py>=CH)continue;
+          for(let dx=0;dx<pw;dx++){const px=px0+dx; if(px>=CW)continue;
+            const idx=(py*CW+px)*4; d[idx]=r;d[idx+1]=g;d[idx+2]=b;d[idx+3]=255;
+          }
+        }
+      }
+    }
+    ctx.putImageData(id,0,0);
+    ctx.strokeStyle='rgba(0,0,0,0.22)';ctx.lineWidth=0.5;
+    for(let j=0;j<=NY;j++){ctx.beginPath();ctx.moveTo(0,j*DY);ctx.lineTo(CW,j*DY);ctx.stroke();}
+    for(let i=0;i<=NX;i++){ctx.beginPath();ctx.moveTo(i*DX,0);ctx.lineTo(i*DX,CH);ctx.stroke();}
+  }
+
+  function animate(ts){
+    const dt=(ts-lastT)/1000; lastT=ts;
+    t+=Math.min(dt,0.05);
+    iter=Math.min(120,iter+1);
+    if(ts-lastDot>700){dotOn=!dotOn;liveDot.style.opacity=dotOn?'1':'0.2';lastDot=ts;}
+    draw();
+    iterLbl.textContent='Iter: '+iter;
+    compLbl.textContent='Compliance: '+(310-iter*0.6+Math.sin(t*2)*2.5).toFixed(1)+' N·mm';
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>
