@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semester Thesis | Mithra Iyangar Ramesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1625;--navy-card:#0E1E35;--cyan:#00C9E4;--gold:#F4A833;--white:#F0F4FF;--muted:#7A8BA8;--border:rgba(0,201,228,0.15);--sim:#8B5CF6;--prog:#10B981;--design:#F59E0B;--research:#3B82F6}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+.back-nav{position:fixed;top:0;left:0;right:0;background:rgba(11,22,37,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 clamp(1.5rem,5vw,4rem);height:56px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:.5rem;color:var(--cyan);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;transition:opacity .2s}.back-link:hover{opacity:.75}.back-link svg{width:14px;height:14px}
+.nav-tag{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.08em}
+.hero{padding:calc(56px + 5rem) clamp(1.5rem,8vw,7rem) 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:56px;right:0;width:50%;height:100%;background:radial-gradient(ellipse at 70% 30%,rgba(139,92,246,0.09) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(245,158,11,0.05) 0%,transparent 50%);pointer-events:none}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,3.5vw,2.75rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem;max-width:26ch}
+.hero h1 span{color:var(--cyan)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;margin-bottom:2.5rem}
+.meta-pill{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--muted)}
+.meta-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;max-width:750px}
+.stat-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1rem}
+.stat-value{font-family:'Space Grotesk',sans-serif;font-size:1.65rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.stat-label{font-size:11px;letter-spacing:.05em;color:var(--muted);text-transform:uppercase}
+.tools-strip{padding:1.25rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.tools-label{font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.tool-tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:.3rem .75rem;border-radius:4px;background:rgba(0,201,228,0.08);border:1px solid rgba(0,201,228,0.2);color:var(--cyan);letter-spacing:.04em}
+.process-section{padding:5rem clamp(1.5rem,8vw,7rem)}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em}
+.process-chart{background:var(--navy-card);border:1px solid var(--border);border-radius:14px;padding:2.5rem;overflow-x:auto}
+.process-svg-wrap{min-width:820px}
+.disc-nav{position:sticky;top:56px;z-index:50;background:rgba(11,22,37,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,8vw,7rem);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.disc-nav::-webkit-scrollbar{display:none}
+.disc-btn{display:flex;align-items:center;gap:.5rem;padding:1rem 1.25rem;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}.disc-btn:hover{color:var(--white)}
+.disc-btn[data-disc="sim"]{--disc-color:var(--sim)}.disc-btn[data-disc="prog"]{--disc-color:var(--prog)}.disc-btn[data-disc="design"]{--disc-color:var(--design)}.disc-btn[data-disc="research"]{--disc-color:var(--research)}
+.disc-btn.active{color:var(--white);border-bottom-color:var(--disc-color)}
+.disc-dot{width:7px;height:7px;border-radius:50%;background:var(--disc-color)}
+.disc-sections{padding:0 clamp(1.5rem,8vw,7rem)}
+.disc-section{padding:5rem 0;border-bottom:1px solid var(--border)}.disc-section:last-child{border-bottom:none}
+.disc-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:3rem}
+.disc-badge{display:flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:6px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;margin-top:.3rem;flex-shrink:0}
+[data-disc="sim"] .disc-badge{background:rgba(139,92,246,.12);color:#A78BFA;border:1px solid rgba(139,92,246,.25)}
+[data-disc="prog"] .disc-badge{background:rgba(16,185,129,.12);color:#6EE7B7;border:1px solid rgba(16,185,129,.25)}
+[data-disc="design"] .disc-badge{background:rgba(245,158,11,.12);color:#FCD34D;border:1px solid rgba(245,158,11,.25)}
+[data-disc="research"] .disc-badge{background:rgba(59,130,246,.12);color:#93C5FD;border:1px solid rgba(59,130,246,.25)}
+.disc-section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.disc-section-sub{font-size:14px;color:var(--muted);margin-top:.35rem}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem}
+.content-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+.content-card h4{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin-bottom:.75rem;color:var(--white)}
+.content-card p,.content-card li{font-size:13.5px;color:var(--muted);line-height:1.65}
+.content-card ul{padding-left:1.1rem}.content-card ul li{margin-bottom:.35rem}
+.result-highlight{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:rgba(0,201,228,0.05);border:1px solid rgba(0,201,228,0.15);border-radius:8px;margin-top:.75rem}
+.result-highlight .rh-val{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.result-highlight .rh-label{font-size:12px;color:var(--muted)}
+.benchmark-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1.5rem 0}
+.benchmark-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center}
+.bc-name{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--white);margin-bottom:.4rem}
+.bc-icon{font-size:2rem;margin-bottom:.5rem;display:block}
+.bc-desc{font-size:11.5px;color:var(--muted)}
+.img-placeholder{border:2px dashed rgba(0,201,228,0.2);border-radius:10px;padding:2.5rem;text-align:center;background:rgba(0,201,228,0.02);margin:1.5rem 0}
+.img-placeholder .ph-icon{font-size:2rem;margin-bottom:.75rem;opacity:.4}
+.img-placeholder h5{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:.5rem}
+.img-placeholder p{font-size:12px;color:var(--muted)}
+.img-placeholder .ph-source{display:inline-block;margin-top:.75rem;padding:.3rem .75rem;background:rgba(244,168,51,.1);border:1px solid rgba(244,168,51,.2);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.06em}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin:1rem 0}
+.data-table th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.6rem .75rem;text-align:left;border-bottom:1px solid var(--border)}
+.data-table td{padding:.65rem .75rem;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--white)}
+.data-table td.mono{font-family:'JetBrains Mono',monospace;color:var(--cyan)}
+.data-table tr:last-child td{border-bottom:none}
+.wide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+@media(max-width:700px){.wide-grid{grid-template-columns:1fr}}
+.highlight{color:var(--cyan);font-weight:500}.gold{color:var(--gold);font-weight:600}
+.page-footer{padding:3rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-text{font-size:13px;color:var(--muted)}
+.footer-link{font-size:13px;color:var(--cyan);text-decoration:none;display:flex;align-items:center;gap:.4rem}.footer-link:hover{opacity:.75}
+</style>
+</head>
+<body>
+
+<nav class="back-nav">
+  <a class="back-link" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Portfolio
+  </a>
+  <span class="nav-tag">PROJECT 02 / 05</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">TU Munich · Semester Thesis SA0109 · Apr – Oct 2023</div>
+  <h1>Quantifying the Potential Loss by Pre-Set Parameters in <span>Topology Optimisation</span> for Additive Manufacturing</h1>
+  <div class="hero-meta">
+    <span class="meta-pill"><span class="dot"></span>6 months</span>
+    <span class="meta-pill"><span class="dot"></span>Supervisor: Felix Endress / Prof. Zimmermann</span>
+    <span class="meta-pill"><span class="dot"></span>4 benchmark cases</span>
+    <span class="meta-pill"><span class="dot"></span>SIMP method</span>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-value">≤5%</div>
+      <div class="stat-label">Tradeoff when AR &lt; 2</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">10–25%</div>
+      <div class="stat-label">Performance loss at AR = 5</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">4</div>
+      <div class="stat-label">Benchmark cases studied</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">AM</div>
+      <div class="stat-label">Manufacturing target</div>
+    </div>
+  </div>
+</header>
+
+<div class="tools-strip">
+  <span class="tools-label">Tools</span>
+  <span class="tool-tag">Python</span>
+  <span class="tool-tag">MATLAB</span>
+  <span class="tool-tag">SIMP Method</span>
+  <span class="tool-tag">OptiStruct</span>
+  <span class="tool-tag">Additive Manufacturing</span>
+</div>
+
+<section class="process-section">
+  <div style="margin-bottom:2.5rem">
+    <div class="section-eyebrow">Research approach</div>
+    <div class="section-title">Methodology</div>
+  </div>
+  <div class="process-chart">
+    <div class="process-svg-wrap">
+      <svg viewBox="0 0 860 195" xmlns="http://www.w3.org/2000/svg" width="100%" style="overflow:visible">
+        <defs>
+          <marker id="ar3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#00C9E4" opacity=".7"/>
+          </marker>
+          <style>.st3{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600}.ss3{font-family:'Inter',sans-serif;font-size:8.5px;fill:#7A8BA8}.ph3{font-family:'JetBrains Mono',sans-serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase}</style>
+        </defs>
+        <text x="70" y="14" class="ph3" fill="#8B5CF6" opacity=".7">SETUP</text>
+        <text x="210" y="14" class="ph3" fill="#8B5CF6" opacity=".7">PARAMETER STUDY</text>
+        <text x="390" y="14" class="ph3" fill="#EF4444" opacity=".7">UNCONSTRAINED</text>
+        <text x="545" y="14" class="ph3" fill="#10B981" opacity=".7">CONSTRAINED (AM)</text>
+        <text x="710" y="14" class="ph3" fill="#F59E0B" opacity=".7">ANALYSIS</text>
+
+        <rect x="20" y="28" width="110" height="80" rx="7" ry="7" stroke-width="1.5" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.35)"/>
+        <text x="75" y="52" class="st3" fill="#A78BFA" text-anchor="middle">4 Benchmarks</text>
+        <text x="75" y="65" class="ss3" text-anchor="middle">MBB beam</text>
+        <text x="75" y="77" class="ss3" text-anchor="middle">Cantilever beam</text>
+        <text x="75" y="89" class="ss3" text-anchor="middle">Tensile specimen</text>
+        <text x="75" y="101" class="ss3" text-anchor="middle">L-crank</text>
+        <line x1="130" y1="68" x2="158" y2="68" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#ar3)"/>
+
+        <rect x="160" y="28" width="120" height="80" rx="7" ry="7" stroke-width="1.5" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.35)"/>
+        <text x="220" y="52" class="st3" fill="#A78BFA" text-anchor="middle">Pre-set Params</text>
+        <text x="220" y="65" class="ss3" text-anchor="middle">Aspect Ratio (AR)</text>
+        <text x="220" y="77" class="ss3" text-anchor="middle">Volume fraction</text>
+        <text x="220" y="89" class="ss3" text-anchor="middle">Penalty factor (p)</text>
+        <text x="220" y="101" class="ss3" text-anchor="middle">Filter radius</text>
+        <line x1="280" y1="68" x2="308" y2="68" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#ar3)"/>
+
+        <rect x="310" y="28" width="120" height="80" rx="7" ry="7" stroke-width="1.5" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.35)"/>
+        <text x="370" y="52" class="st3" fill="#FCA5A5" text-anchor="middle">Unconstrained</text>
+        <text x="370" y="65" class="ss3" text-anchor="middle">SIMP, no AM rules</text>
+        <text x="370" y="77" class="ss3" text-anchor="middle">Optimal topology</text>
+        <text x="370" y="89" class="ss3" text-anchor="middle">→ reference result</text>
+        <text x="370" y="101" class="ss3" text-anchor="middle">Compliance minimised</text>
+        <line x1="430" y1="68" x2="458" y2="68" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#ar3)"/>
+
+        <rect x="460" y="28" width="125" height="80" rx="7" ry="7" stroke-width="1.5" fill="rgba(16,185,129,.1)" stroke="rgba(16,185,129,.35)"/>
+        <text x="522" y="52" class="st3" fill="#6EE7B7" text-anchor="middle">AM Constrained</text>
+        <text x="522" y="65" class="ss3" text-anchor="middle">Overhang constraints</text>
+        <text x="522" y="77" class="ss3" text-anchor="middle">Min. member size</text>
+        <text x="522" y="89" class="ss3" text-anchor="middle">Build direction</text>
+        <text x="522" y="101" class="ss3" text-anchor="middle">→ practical result</text>
+        <line x1="585" y1="68" x2="613" y2="68" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#ar3)"/>
+
+        <rect x="615" y="28" width="125" height="80" rx="7" ry="7" stroke-width="1.5" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.35)"/>
+        <text x="677" y="52" class="st3" fill="#FCD34D" text-anchor="middle">Tradeoff Study</text>
+        <text x="677" y="65" class="ss3" text-anchor="middle">Δ compliance vs AR</text>
+        <text x="677" y="77" class="ss3" text-anchor="middle">Performance loss</text>
+        <text x="677" y="89" class="ss3" text-anchor="middle">quantified</text>
+        <text x="677" y="101" class="ss3" text-anchor="middle">→ AR &lt;2 guideline</text>
+
+        <!-- AR guideline callout -->
+        <rect x="58" y="135" width="700" height="38" rx="6" fill="rgba(244,168,51,.07)" stroke="rgba(244,168,51,.2)" stroke-width="1"/>
+        <text x="408" y="152" style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;fill:#FCD34D" text-anchor="middle">Key Finding: Aspect Ratio &lt; 2 → performance loss ≤ 5%   |   AR = 5 → loss 10–25%</text>
+        <text x="408" y="166" style="font-family:'Inter',sans-serif;font-size:9px;fill:#7A8BA8" text-anchor="middle">Consistent across all 4 benchmark cases — provides an actionable design guideline for AM-constrained topology optimisation</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<nav class="disc-nav" id="disc-nav">
+  <a class="disc-btn active" data-disc="sim" href="#sim"><span class="disc-dot"></span>Simulation Engineer</a>
+  <a class="disc-btn" data-disc="design" href="#design"><span class="disc-dot"></span>Design Engineer</a>
+  <a class="disc-btn" data-disc="prog" href="#prog"><span class="disc-dot"></span>Programming</a>
+  <a class="disc-btn" data-disc="research" href="#research"><span class="disc-dot"></span>Research</a>
+</nav>
+
+<div class="disc-sections">
+
+  <section class="disc-section" id="sim" data-disc="sim">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Simulation Engineer</div>
+      <div>
+        <div class="disc-section-title">SIMP Topology Optimisation — Method & Implementation</div>
+        <div class="disc-section-sub">Solid Isotropic Material with Penalisation (SIMP) applied to 4 structural benchmark problems</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>SIMP Method</h4>
+        <ul>
+          <li>Density-based method: each element has a pseudo-density ρ ∈ [0,1]</li>
+          <li>Stiffness penalised: E(ρ) = ρ<sup>p</sup> × E₀, where p = 3 (standard)</li>
+          <li>Objective: minimise compliance (maximise stiffness)</li>
+          <li>Constraint: volume fraction ≤ target</li>
+          <li>Filter: sensitivity filter to avoid checkerboard patterns</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>AM Constraints Implemented</h4>
+        <ul>
+          <li><span class="highlight">Overhang constraint</span>: limit self-supporting angle (e.g. &gt;45°)</li>
+          <li><span class="highlight">Minimum member thickness</span>: enforced via filter radius</li>
+          <li><span class="highlight">Build direction</span>: vertical (Z-axis) per SLM process</li>
+          <li><span class="highlight">Aspect ratio</span>: ratio of element dimensions — key parameter studied</li>
+        </ul>
+      </div>
+    </div>
+    <div class="benchmark-grid">
+      <div class="benchmark-card">
+        <span class="bc-icon">⬛</span>
+        <div class="bc-name">MBB Beam</div>
+        <div class="bc-desc">Simply supported, central load — classic cantilever-class benchmark</div>
+      </div>
+      <div class="benchmark-card">
+        <span class="bc-icon">📐</span>
+        <div class="bc-name">Cantilever Beam</div>
+        <div class="bc-desc">Fixed-free beam with tip load — tests overhang sensitivity</div>
+      </div>
+      <div class="benchmark-card">
+        <span class="bc-icon">⟵⟶</span>
+        <div class="bc-name">Tensile Specimen</div>
+        <div class="bc-desc">Dog-bone geometry under uniaxial tension — filament bridging</div>
+      </div>
+      <div class="benchmark-card">
+        <span class="bc-icon">↩</span>
+        <div class="bc-name">L-Crank</div>
+        <div class="bc-desc">Real-world bell crank geometry — from HiWi project, combined loading</div>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>Topology Results — 4 Benchmarks, Unconstrained vs AM-Constrained</h5>
+      <p>Side-by-side density plots for each case showing how AM constraints change the optimal material distribution</p>
+      <span class="ph-source">Source: MATLAB .fig files — Google Drive → 02_Semesterthesis → 05_Results<br>Open MATLAB figures → Export as PNG (or ask if MATLAB access possible)</span>
+    </div>
+  </section>
+
+  <section class="disc-section" id="design" data-disc="design">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Design Engineer</div>
+      <div>
+        <div class="disc-section-title">Aspect Ratio Effect on Structural Performance</div>
+        <div class="disc-section-sub">Parametric study establishing a practical design guideline for AM-constrained topology optimisation</div>
+      </div>
+    </div>
+    <div class="content-card" style="margin-bottom:1.5rem">
+      <h4>The Core Research Question</h4>
+      <p>When you impose AM manufacturing constraints (overhang limits, minimum member size, build direction) on a topology optimisation, how much structural performance do you sacrifice compared to the unconstrained optimal? And <em>which parameters drive that loss most?</em></p>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>Key Parameter: Aspect Ratio (AR)</h4>
+        <ul>
+          <li>AR = element width / height ratio in the mesh</li>
+          <li>Higher AR → more anisotropic mesh → more AM constraint interactions</li>
+          <li>Study varied AR from 1.0 to 5.0</li>
+        </ul>
+        <div class="result-highlight">
+          <div><div class="rh-val">AR &lt; 2</div><div class="rh-label">Performance loss stays ≤ 5% — safe zone for most applications</div></div>
+        </div>
+        <div class="result-highlight">
+          <div><div class="rh-val">AR = 5</div><div class="rh-label">Loss rises to 10–25% — significant; consider mesh refinement</div></div>
+        </div>
+      </div>
+      <div class="content-card">
+        <h4>Results Summary</h4>
+        <table class="data-table">
+          <thead><tr><th>Aspect Ratio</th><th>Performance Loss</th><th>Practical Implication</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 1.5</td><td class="mono" style="color:#10B981">~1–3%</td><td>Negligible — use freely</td></tr>
+            <tr><td>1.5 – 2.0</td><td class="mono" style="color:#10B981">≤ 5%</td><td>Acceptable for AM design</td></tr>
+            <tr><td>2.0 – 3.5</td><td class="mono" style="color:#F59E0B">5–12%</td><td>Case-dependent, review</td></tr>
+            <tr><td>≥ 5.0</td><td class="mono" style="color:#EF4444">10–25%</td><td>Avoid or refine mesh</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--muted);margin-top:.5rem">Consistent trend across all 4 benchmark cases — result is geometry-independent.</p>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>Performance Loss vs Aspect Ratio — All 4 Benchmarks</h5>
+      <p>Plot showing compliance increase (%) as a function of AR for MBB beam, cantilever, tensile specimen, and L-crank</p>
+      <span class="ph-source">Source: MATLAB output from 02_Semesterthesis → 05_Results subfolders</span>
+    </div>
+  </section>
+
+  <section class="disc-section" id="prog" data-disc="prog">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Programming</div>
+      <div>
+        <div class="disc-section-title">Python & MATLAB Implementation</div>
+        <div class="disc-section-sub">Built the topology optimisation engine and statistical analysis pipeline from scratch</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>Python Modules (TO Engine)</h4>
+        <ul>
+          <li>FEA solver: 2D plane stress, structured quad mesh</li>
+          <li>SIMP sensitivity filter: weighted density averaging</li>
+          <li>OC (optimality criteria) update scheme</li>
+          <li>AM constraint enforcement: overhang sensitivity projection</li>
+          <li>Convergence monitor + topology export</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>MATLAB Modules (Statistical Analysis)</h4>
+        <ul>
+          <li>Parametric sweep: AR × volume fraction × penalty</li>
+          <li>Result aggregation across 4 benchmark cases</li>
+          <li>Performance metric calculation (compliance ratio)</li>
+          <li>.fig files exported for documentation</li>
+          <li>Visualisation: topology plots, performance curves</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="disc-section" id="research" data-disc="research">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Research</div>
+      <div>
+        <div class="disc-section-title">Findings & Practical Guidelines</div>
+        <div class="disc-section-sub">Translating parametric study results into actionable engineering rules for AM-TO workflows</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>Primary Findings</h4>
+        <ul>
+          <li>AM constraints impose a <span class="highlight">measurable but bounded</span> performance penalty</li>
+          <li>Aspect Ratio is the <span class="gold">dominant driver</span> of performance loss — more influential than filter radius or penalty factor at constant AR</li>
+          <li>The tradeoff is consistent across all tested geometries → guideline is generalisable</li>
+          <li>Overhang constraints become critical at AR ≥ 3</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>Engineering Guideline Produced</h4>
+        <ul>
+          <li>Maintain <span class="gold">AR &lt; 2</span> for AM-optimised parts — keeps performance loss within 5%</li>
+          <li>If geometry forces AR ≥ 3, budget for 10–25% compliance increase vs theoretical optimum</li>
+          <li>Filter radius has secondary effect — can partially compensate at moderate AR</li>
+          <li>Penalty factor (p) sensitivity: higher p → sharper 0/1 transitions → less sensitive to AR</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="page-footer">
+  <div class="footer-text">Mithra Iyangar Ramesh · M.Sc. Aerospace Engineering, TU Munich</div>
+  <a class="footer-link" href="index.html">← Back to all projects</a>
+</footer>
+
+<script>
+const sections=document.querySelectorAll('.disc-section');
+const navBtns=document.querySelectorAll('.disc-btn');
+function updateNav(){let c='sim';sections.forEach(s=>{if(s.getBoundingClientRect().top<130)c=s.id});navBtns.forEach(b=>b.classList.toggle('active',b.getAttribute('href')==='#'+c));}
+window.addEventListener('scroll',updateNav,{passive:true});updateNav();
+</script>
+</body>
+</html>

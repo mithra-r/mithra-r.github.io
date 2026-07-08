@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minor Thesis | Mithra Iyangar Ramesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1625;--navy-card:#0E1E35;--cyan:#00C9E4;--gold:#F4A833;--white:#F0F4FF;--muted:#7A8BA8;--border:rgba(0,201,228,0.15);--design:#10B981;--fea:#EF4444;--optim:#8B5CF6}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+.back-nav{position:fixed;top:0;left:0;right:0;background:rgba(11,22,37,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 clamp(1.5rem,5vw,4rem);height:56px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:.5rem;color:var(--cyan);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}.back-link:hover{opacity:.75}.back-link svg{width:14px;height:14px}
+.nav-tag{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.08em}
+.hero{padding:calc(56px + 5rem) clamp(1.5rem,8vw,7rem) 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:56px;right:0;width:50%;height:100%;background:radial-gradient(ellipse at 70% 30%,rgba(16,185,129,0.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(139,92,246,0.05) 0%,transparent 50%);pointer-events:none}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem;max-width:22ch}
+.hero h1 span{color:var(--design)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;margin-bottom:2.5rem}
+.meta-pill{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--muted)}
+.meta-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--design)}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;max-width:700px}
+.stat-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1rem}
+.stat-value{font-family:'Space Grotesk',sans-serif;font-size:1.65rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.stat-label{font-size:11px;letter-spacing:.05em;color:var(--muted);text-transform:uppercase}
+.tools-strip{padding:1.25rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.tools-label{font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.tool-tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:.3rem .75rem;border-radius:4px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);color:#6EE7B7;letter-spacing:.04em}
+.process-section{padding:5rem clamp(1.5rem,8vw,7rem)}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em}
+.process-chart{background:var(--navy-card);border:1px solid var(--border);border-radius:14px;padding:2.5rem;overflow-x:auto}
+.process-svg-wrap{min-width:700px}
+.disc-nav{position:sticky;top:56px;z-index:50;background:rgba(11,22,37,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,8vw,7rem);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.disc-nav::-webkit-scrollbar{display:none}
+.disc-btn{display:flex;align-items:center;gap:.5rem;padding:1rem 1.25rem;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}.disc-btn:hover{color:var(--white)}
+.disc-btn[data-disc="design"]{--disc-color:var(--design)}.disc-btn[data-disc="fea"]{--disc-color:var(--fea)}.disc-btn[data-disc="optim"]{--disc-color:var(--optim)}
+.disc-btn.active{color:var(--white);border-bottom-color:var(--disc-color)}
+.disc-dot{width:7px;height:7px;border-radius:50%;background:var(--disc-color)}
+.disc-sections{padding:0 clamp(1.5rem,8vw,7rem)}
+.disc-section{padding:5rem 0;border-bottom:1px solid var(--border)}.disc-section:last-child{border-bottom:none}
+.disc-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:3rem}
+.disc-badge{display:flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:6px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;margin-top:.3rem;flex-shrink:0}
+[data-disc="design"] .disc-badge{background:rgba(16,185,129,.12);color:#6EE7B7;border:1px solid rgba(16,185,129,.25)}
+[data-disc="fea"] .disc-badge{background:rgba(239,68,68,.12);color:#FCA5A5;border:1px solid rgba(239,68,68,.25)}
+[data-disc="optim"] .disc-badge{background:rgba(139,92,246,.12);color:#A78BFA;border:1px solid rgba(139,92,246,.25)}
+.disc-section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.disc-section-sub{font-size:14px;color:var(--muted);margin-top:.35rem}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem}
+.content-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+.content-card h4{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin-bottom:.75rem;color:var(--white)}
+.content-card p,.content-card li{font-size:13.5px;color:var(--muted);line-height:1.65}
+.content-card ul{padding-left:1.1rem}.content-card ul li{margin-bottom:.35rem}
+.result-highlight{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.15);border-radius:8px;margin-top:.75rem}
+.result-highlight .rh-val{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.result-highlight .rh-label{font-size:12px;color:var(--muted)}
+.img-placeholder{border:2px dashed rgba(16,185,129,0.2);border-radius:10px;padding:2.5rem;text-align:center;background:rgba(16,185,129,0.02);margin:1.5rem 0}
+.img-placeholder .ph-icon{font-size:2rem;margin-bottom:.75rem;opacity:.4}
+.img-placeholder h5{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6EE7B7;margin-bottom:.5rem}
+.img-placeholder p{font-size:12px;color:var(--muted)}
+.img-placeholder .ph-source{display:inline-block;margin-top:.75rem;padding:.3rem .75rem;background:rgba(0,201,228,.08);border:1px solid rgba(0,201,228,.2);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:.06em}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin:1rem 0}
+.data-table th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.6rem .75rem;text-align:left;border-bottom:1px solid var(--border)}
+.data-table td{padding:.65rem .75rem;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--white)}
+.data-table td.mono{font-family:'JetBrains Mono',monospace;color:var(--cyan)}
+.data-table td.green{color:#6EE7B7;font-weight:600}
+.data-table tr:last-child td{border-bottom:none}
+.highlight{color:var(--cyan);font-weight:500}.gold{color:var(--gold);font-weight:600}
+.page-footer{padding:3rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-text{font-size:13px;color:var(--muted)}
+.footer-link{font-size:13px;color:var(--cyan);text-decoration:none}.footer-link:hover{opacity:.75}
+</style>
+</head>
+<body>
+
+<nav class="back-nav">
+  <a class="back-link" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Portfolio
+  </a>
+  <span class="nav-tag">PROJECT 05 / 05</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">RVCE Bangalore · B.Eng. Minor Project · 2020 – 2021</div>
+  <h1><span>Shape Optimisation</span> of Drain Holes in Gas Turbine Shaft</h1>
+  <div class="hero-meta">
+    <span class="meta-pill"><span class="dot"></span>Stress concentration reduction</span>
+    <span class="meta-pill"><span class="dot"></span>Inconel 718</span>
+    <span class="meta-pill"><span class="dot"></span>Abaqus CAE + HyperMesh</span>
+    <span class="meta-pill"><span class="dot"></span>CATIA V5 CAD</span>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-value">AR 2–2.5</div>
+      <div class="stat-label">Optimal rectangular hole aspect ratio</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">SCF</div>
+      <div class="stat-label">Stress concentration factor minimised</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">Inconel 718</div>
+      <div class="stat-label">Material (Ni-based superalloy)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">Abaqus</div>
+      <div class="stat-label">Primary FEA solver</div>
+    </div>
+  </div>
+</header>
+
+<div class="tools-strip">
+  <span class="tools-label">Tools</span>
+  <span class="tool-tag">Abaqus CAE</span>
+  <span class="tool-tag">CATIA V5</span>
+  <span class="tool-tag">HyperMesh</span>
+  <span class="tool-tag">Inconel 718</span>
+</div>
+
+<section class="process-section">
+  <div style="margin-bottom:2.5rem">
+    <div class="section-eyebrow">Design optimisation workflow</div>
+    <div class="section-title">Methodology</div>
+  </div>
+  <div class="process-chart">
+    <div class="process-svg-wrap">
+      <svg viewBox="0 0 760 180" xmlns="http://www.w3.org/2000/svg" width="100%" style="overflow:visible">
+        <defs>
+          <marker id="ar5" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#10B981" opacity=".7"/>
+          </marker>
+          <marker id="ar5b" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#00C9E4" opacity=".5"/>
+          </marker>
+          <style>.st5{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600}.ss5{font-family:'Inter',sans-serif;font-size:8.5px;fill:#7A8BA8}</style>
+        </defs>
+
+        <rect x="20" y="28" width="120" height="75" rx="7" fill="rgba(16,185,129,.1)" stroke="rgba(16,185,129,.35)" stroke-width="1.5"/>
+        <text x="80" y="52" class="st5" fill="#6EE7B7" text-anchor="middle">Problem Setup</text>
+        <text x="80" y="65" class="ss5" text-anchor="middle">Gas turbine shaft</text>
+        <text x="80" y="77" class="ss5" text-anchor="middle">Drain hole necessity</text>
+        <text x="80" y="89" class="ss5" text-anchor="middle">Inconel 718 material</text>
+        <line x1="140" y1="65" x2="168" y2="65" stroke="#10B981" stroke-width="1.5" opacity=".6" marker-end="url(#ar5)"/>
+
+        <rect x="170" y="28" width="120" height="75" rx="7" fill="rgba(16,185,129,.1)" stroke="rgba(16,185,129,.35)" stroke-width="1.5"/>
+        <text x="230" y="52" class="st5" fill="#6EE7B7" text-anchor="middle">CAD Modelling</text>
+        <text x="230" y="65" class="ss5" text-anchor="middle">CATIA V5 geometry</text>
+        <text x="230" y="77" class="ss5" text-anchor="middle">Multiple hole shapes:</text>
+        <text x="230" y="89" class="ss5" text-anchor="middle">circular, ellipse, rect.</text>
+        <line x1="290" y1="65" x2="318" y2="65" stroke="#10B981" stroke-width="1.5" opacity=".6" marker-end="url(#ar5)"/>
+
+        <rect x="320" y="28" width="120" height="75" rx="7" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.35)" stroke-width="1.5"/>
+        <text x="380" y="52" class="st5" fill="#FCA5A5" text-anchor="middle">FEA (Abaqus)</text>
+        <text x="380" y="65" class="ss5" text-anchor="middle">HyperMesh mesh</text>
+        <text x="380" y="77" class="ss5" text-anchor="middle">Torsion + bending</text>
+        <text x="380" y="89" class="ss5" text-anchor="middle">Von Mises stress</text>
+        <line x1="440" y1="65" x2="468" y2="65" stroke="#10B981" stroke-width="1.5" opacity=".6" marker-end="url(#ar5)"/>
+
+        <rect x="470" y="28" width="120" height="75" rx="7" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.35)" stroke-width="1.5"/>
+        <text x="530" y="52" class="st5" fill="#A78BFA" text-anchor="middle">Parametric Study</text>
+        <text x="530" y="65" class="ss5" text-anchor="middle">AR sweep: 1→4</text>
+        <text x="530" y="77" class="ss5" text-anchor="middle">SCF vs AR extracted</text>
+        <text x="530" y="89" class="ss5" text-anchor="middle">Per hole geometry</text>
+        <line x1="590" y1="65" x2="618" y2="65" stroke="#10B981" stroke-width="1.5" opacity=".6" marker-end="url(#ar5)"/>
+
+        <rect x="620" y="28" width="120" height="75" rx="7" fill="rgba(244,168,51,.1)" stroke="rgba(244,168,51,.35)" stroke-width="1.5"/>
+        <text x="680" y="52" class="st5" fill="#FCD34D" text-anchor="middle">Result</text>
+        <text x="680" y="65" class="ss5" text-anchor="middle">Rectangular AR 2–2.5</text>
+        <text x="680" y="77" class="ss5" text-anchor="middle">= minimum SCF</text>
+        <text x="680" y="89" class="ss5" text-anchor="middle">Design recommendation</text>
+
+        <!-- Iteration loop -->
+        <path d="M 680 103 L 680 145 L 380 145 L 380 103" stroke="#00C9E4" stroke-width="1.2" fill="none" opacity=".35" stroke-dasharray="4,3" marker-start="url(#ar5b)"/>
+        <text x="530" y="160" style="font-family:'Inter',sans-serif;font-size:9px;fill:#7A8BA8" text-anchor="middle">Iterated hole geometry until minimum SCF converged</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<nav class="disc-nav" id="disc-nav">
+  <a class="disc-btn active" data-disc="design" href="#design"><span class="disc-dot"></span>Design Engineer</a>
+  <a class="disc-btn" data-disc="fea" href="#fea"><span class="disc-dot"></span>FEA & Stress</a>
+  <a class="disc-btn" data-disc="optim" href="#optim"><span class="disc-dot"></span>Shape Optimisation</a>
+</nav>
+
+<div class="disc-sections">
+
+  <section class="disc-section" id="design" data-disc="design">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Design Engineer</div>
+      <div>
+        <div class="disc-section-title">Drain Hole Geometry & CAD Modelling</div>
+        <div class="disc-section-sub">Parametric CAD study of drain hole shapes in a gas turbine shaft — balancing fluid drainage with structural integrity</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>Design Context</h4>
+        <ul>
+          <li>Drain holes required in gas turbine shafts to prevent oil/condensate accumulation</li>
+          <li>Problem: any hole creates a <span class="highlight">stress concentration</span> that reduces fatigue life</li>
+          <li>Goal: find hole shape that minimises stress concentration factor (SCF) while maintaining drain function</li>
+          <li>Material: <span class="highlight">Inconel 718</span> — Ni-based superalloy for high-temperature applications</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>Hole Geometries Studied</h4>
+        <ul>
+          <li><span class="highlight">Circular</span> — baseline (SCF = 3 for uniaxial tension, per Kirsch)</li>
+          <li><span class="highlight">Elliptical</span> — varying semi-axis ratio a/b</li>
+          <li><span class="highlight">Rectangular with corner radii</span> — AR = width/height, varying corner radius</li>
+          <li><span class="highlight">Racetrack</span> — semi-circular ends with straight mid-section</li>
+        </ul>
+        <div class="result-highlight">
+          <div><div class="rh-val">AR 2–2.5</div><div class="rh-label">Rectangular hole with optimised corner radius — minimum SCF found</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="content-card" style="margin-bottom:1.5rem">
+      <h4>Inconel 718 Material Properties</h4>
+      <table class="data-table">
+        <thead><tr><th>Property</th><th>Value</th><th>Condition</th></tr></thead>
+        <tbody>
+          <tr><td>Young's Modulus</td><td class="mono">200 GPa</td><td>Room temp.</td></tr>
+          <tr><td>Yield Strength (Rp0.2)</td><td class="mono">1035 MPa</td><td>Aged condition</td></tr>
+          <tr><td>UTS</td><td class="mono">1240 MPa</td><td>Aged condition</td></tr>
+          <tr><td>Poisson's Ratio</td><td class="mono">0.29</td><td>—</td></tr>
+          <tr><td>Density</td><td class="mono">8.19 g/cm³</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>CATIA V5 — Shaft CAD Model with Drain Hole Variants</h5>
+      <p>CAD render showing the shaft geometry and the different hole shape configurations studied</p>
+      <span class="ph-source">Source: MInor_Project_Report_FINAL.pdf (uploaded) — Figure from Chapter 3</span>
+    </div>
+  </section>
+
+  <section class="disc-section" id="fea" data-disc="fea">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>FEA & Stress</div>
+      <div>
+        <div class="disc-section-title">Stress Analysis using Abaqus CAE & HyperMesh</div>
+        <div class="disc-section-sub">Finite element analysis of stress concentration around drain holes under torsion and bending loads</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>FEA Setup</h4>
+        <ul>
+          <li>Meshing: <span class="highlight">HyperMesh</span> — structured hex mesh, refined around hole</li>
+          <li>Solver: <span class="highlight">Abaqus CAE</span> — Standard (implicit)</li>
+          <li>Element type: C3D8R (8-node reduced integration hexahedra)</li>
+          <li>Loads: combined torsion + bending, representing shaft operating conditions</li>
+          <li>Boundary conditions: fixed end + load application point</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>Results Extracted</h4>
+        <ul>
+          <li>Peak von Mises stress at hole edge</li>
+          <li>Stress Concentration Factor: <span class="highlight">SCF = σ_max / σ_nominal</span></li>
+          <li>SCF calculated per hole geometry and AR</li>
+          <li>Contour plots for each configuration</li>
+        </ul>
+        <div class="result-highlight">
+          <div><div class="rh-val">Rectangular</div><div class="rh-label">Outperforms circular and elliptical at AR 2–2.5</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>Von Mises Stress Contour — Rectangular Hole AR=2 vs Circular</h5>
+      <p>Side-by-side Abaqus contour plots showing stress concentration reduction for optimal geometry</p>
+      <span class="ph-source">Source: MInor_Project_Report_FINAL.pdf (uploaded) — Figure from Chapter 4/5</span>
+    </div>
+  </section>
+
+  <section class="disc-section" id="optim" data-disc="optim">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Shape Optimisation</div>
+      <div>
+        <div class="disc-section-title">Parametric SCF Study & Optimal AR Determination</div>
+        <div class="disc-section-sub">Systematic variation of hole geometry parameters to identify the design that minimises stress concentration</div>
+      </div>
+    </div>
+    <div class="content-card" style="margin-bottom:1.5rem">
+      <h4>Parametric Results — SCF vs Aspect Ratio</h4>
+      <table class="data-table">
+        <thead><tr><th>Hole Type</th><th>AR</th><th>SCF (approx.)</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Circular</td><td class="mono">1.0</td><td class="mono">3.0</td><td>Kirsch solution baseline</td></tr>
+          <tr><td>Elliptical</td><td class="mono">1.5</td><td class="mono">2.4</td><td>Moderate improvement</td></tr>
+          <tr><td>Elliptical</td><td class="mono">2.0</td><td class="mono">2.1</td><td>Good improvement</td></tr>
+          <tr><td>Rectangular (r-corner)</td><td class="mono">2.0</td><td class="mono" style="color:#10B981">~1.9</td><td>Best — close to optimum</td></tr>
+          <tr><td><strong>Rectangular (r-corner)</strong></td><td class="mono"><strong>2–2.5</strong></td><td class="mono green">Minimum</td><td><strong>← Optimal design</strong></td></tr>
+          <tr><td>Rectangular (r-corner)</td><td class="mono">4.0</td><td class="mono" style="color:#EF4444">Rises</td><td>AR too high — SCF increases</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>Key Insight</h4>
+        <p>There is an <span class="highlight">optimal aspect ratio window</span> for rectangular drain holes. Below AR=2, the hole is too compact (high curvature → high SCF). Above AR=2.5, the long sides create stress risers. The AR 2–2.5 range balances both effects optimally.</p>
+        <div class="result-highlight">
+          <div><div class="rh-val">AR 2–2.5</div><div class="rh-label">Rectangular hole with rounded corners → minimum SCF in gas turbine shaft</div></div>
+        </div>
+      </div>
+      <div class="content-card">
+        <h4>Design Recommendation</h4>
+        <ul>
+          <li>Use <span class="highlight">rectangular drain holes with corner radius</span> (not circular)</li>
+          <li>Target AR between 2.0 and 2.5</li>
+          <li>Orient long axis perpendicular to principal stress direction</li>
+          <li>Corner radius ≥ 15% of hole width to avoid corner stress peaks</li>
+          <li>Applicable to Inconel 718 shafts in high-temperature turbine environments</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>SCF vs Aspect Ratio — All Hole Geometries Compared</h5>
+      <p>Plot showing SCF as a function of AR for circular, elliptical, and rectangular hole families</p>
+      <span class="ph-source">Source: MInor_Project_Report_FINAL.pdf (uploaded) — Figure from Chapter 5/6</span>
+    </div>
+  </section>
+
+</div>
+
+<footer class="page-footer">
+  <div class="footer-text">Mithra Iyangar Ramesh · B.Eng. Aerospace Engineering, RVCE Bangalore</div>
+  <a class="footer-link" href="index.html">← Back to all projects</a>
+</footer>
+
+<script>
+const sections=document.querySelectorAll('.disc-section');
+const navBtns=document.querySelectorAll('.disc-btn');
+function updateNav(){let c='design';sections.forEach(s=>{if(s.getBoundingClientRect().top<130)c=s.id});navBtns.forEach(b=>b.classList.toggle('active',b.getAttribute('href')==='#'+c));}
+window.addEventListener('scroll',updateNav,{passive:true});updateNav();
+</script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bachelor's Thesis | Mithra Iyangar Ramesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1625;--navy-card:#0E1E35;--cyan:#00C9E4;--gold:#F4A833;--white:#F0F4FF;--muted:#7A8BA8;--border:rgba(0,201,228,0.15);--mat:#F59E0B;--test:#EF4444;--prog:#10B981;--struct:#8B5CF6}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+.back-nav{position:fixed;top:0;left:0;right:0;background:rgba(11,22,37,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 clamp(1.5rem,5vw,4rem);height:56px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:.5rem;color:var(--cyan);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}.back-link:hover{opacity:.75}.back-link svg{width:14px;height:14px}
+.nav-tag{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.08em}
+.hero{padding:calc(56px + 5rem) clamp(1.5rem,8vw,7rem) 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:56px;right:0;width:50%;height:100%;background:radial-gradient(ellipse at 70% 30%,rgba(245,158,11,0.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(239,68,68,0.05) 0%,transparent 50%);pointer-events:none}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem;max-width:22ch}
+.hero h1 span{color:var(--gold)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;margin-bottom:2.5rem}
+.meta-pill{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--muted)}
+.meta-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;max-width:700px}
+.stat-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1rem}
+.stat-value{font-family:'Space Grotesk',sans-serif;font-size:1.65rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.stat-label{font-size:11px;letter-spacing:.05em;color:var(--muted);text-transform:uppercase}
+.tools-strip{padding:1.25rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.tools-label{font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.tool-tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:.3rem .75rem;border-radius:4px;background:rgba(244,168,51,0.08);border:1px solid rgba(244,168,51,0.2);color:var(--gold);letter-spacing:.04em}
+.process-section{padding:5rem clamp(1.5rem,8vw,7rem)}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em}
+.process-chart{background:var(--navy-card);border:1px solid var(--border);border-radius:14px;padding:2.5rem;overflow-x:auto}
+.process-svg-wrap{min-width:820px}
+.disc-nav{position:sticky;top:56px;z-index:50;background:rgba(11,22,37,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,8vw,7rem);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.disc-nav::-webkit-scrollbar{display:none}
+.disc-btn{display:flex;align-items:center;gap:.5rem;padding:1rem 1.25rem;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}.disc-btn:hover{color:var(--white)}
+.disc-btn[data-disc="mat"]{--disc-color:var(--mat)}.disc-btn[data-disc="test"]{--disc-color:var(--test)}.disc-btn[data-disc="struct"]{--disc-color:var(--struct)}
+.disc-btn.active{color:var(--white);border-bottom-color:var(--disc-color)}
+.disc-dot{width:7px;height:7px;border-radius:50%;background:var(--disc-color)}
+.disc-sections{padding:0 clamp(1.5rem,8vw,7rem)}
+.disc-section{padding:5rem 0;border-bottom:1px solid var(--border)}.disc-section:last-child{border-bottom:none}
+.disc-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:3rem}
+.disc-badge{display:flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:6px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;margin-top:.3rem;flex-shrink:0}
+[data-disc="mat"] .disc-badge{background:rgba(245,158,11,.12);color:#FCD34D;border:1px solid rgba(245,158,11,.25)}
+[data-disc="test"] .disc-badge{background:rgba(239,68,68,.12);color:#FCA5A5;border:1px solid rgba(239,68,68,.25)}
+[data-disc="struct"] .disc-badge{background:rgba(139,92,246,.12);color:#A78BFA;border:1px solid rgba(139,92,246,.25)}
+.disc-section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.disc-section-sub{font-size:14px;color:var(--muted);margin-top:.35rem}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem}
+.content-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+.content-card h4{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin-bottom:.75rem;color:var(--white)}
+.content-card p,.content-card li{font-size:13.5px;color:var(--muted);line-height:1.65}
+.content-card ul{padding-left:1.1rem}.content-card ul li{margin-bottom:.35rem}
+.result-highlight{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:rgba(244,168,51,0.05);border:1px solid rgba(244,168,51,0.15);border-radius:8px;margin-top:.75rem}
+.result-highlight .rh-val{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.result-highlight .rh-label{font-size:12px;color:var(--muted)}
+.img-placeholder{border:2px dashed rgba(244,168,51,0.2);border-radius:10px;padding:2.5rem;text-align:center;background:rgba(244,168,51,0.02);margin:1.5rem 0}
+.img-placeholder .ph-icon{font-size:2rem;margin-bottom:.75rem;opacity:.4}
+.img-placeholder h5{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.img-placeholder p{font-size:12px;color:var(--muted)}
+.img-placeholder .ph-source{display:inline-block;margin-top:.75rem;padding:.3rem .75rem;background:rgba(0,201,228,.08);border:1px solid rgba(0,201,228,.2);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:.06em}
+.wide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+@media(max-width:700px){.wide-grid{grid-template-columns:1fr}}
+.highlight{color:var(--cyan);font-weight:500}.gold{color:var(--gold);font-weight:600}
+.page-footer{padding:3rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-text{font-size:13px;color:var(--muted)}
+.footer-link{font-size:13px;color:var(--cyan);text-decoration:none}.footer-link:hover{opacity:.75}
+</style>
+</head>
+<body>
+
+<nav class="back-nav">
+  <a class="back-link" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Portfolio
+  </a>
+  <span class="nav-tag">PROJECT 04 / 05</span>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">RVCE Bangalore · B.Eng. Major Project · 2020 – 2021</div>
+  <h1>Influence of <span>Lattice Parameters</span> on Fatigue Life of 18% Nickel Steel</h1>
+  <div class="hero-meta">
+    <span class="meta-pill"><span class="dot"></span>Final year major project</span>
+    <span class="meta-pill"><span class="dot"></span>Maraging steel characterisation</span>
+    <span class="meta-pill"><span class="dot"></span>High Cycle Fatigue testing</span>
+    <span class="meta-pill"><span class="dot"></span>XRD analysis</span>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-value">18% Ni</div>
+      <div class="stat-label">Maraging steel grade studied</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">XRD</div>
+      <div class="stat-label">Williamson-Hall method</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">HCF</div>
+      <div class="stat-label">High cycle fatigue testing</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">CGPA 1.8</div>
+      <div class="stat-label">B.Eng. overall grade</div>
+    </div>
+  </div>
+</header>
+
+<div class="tools-strip">
+  <span class="tools-label">Methods</span>
+  <span class="tool-tag">X-ray Diffraction (XRD)</span>
+  <span class="tool-tag">Williamson-Hall Analysis</span>
+  <span class="tool-tag">HCF Testing</span>
+  <span class="tool-tag">Scherrer Equation</span>
+  <span class="tool-tag">S-N Curve</span>
+</div>
+
+<section class="process-section">
+  <div style="margin-bottom:2.5rem">
+    <div class="section-eyebrow">Research methodology</div>
+    <div class="section-title">Experimental Approach</div>
+  </div>
+  <div class="process-chart">
+    <div class="process-svg-wrap">
+      <svg viewBox="0 0 860 175" xmlns="http://www.w3.org/2000/svg" width="100%" style="overflow:visible">
+        <defs>
+          <marker id="ar4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0,8 3,0 6" fill="#F4A833" opacity=".7"/>
+          </marker>
+          <style>.st4{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600}.ss4{font-family:'Inter',sans-serif;font-size:8.5px;fill:#7A8BA8}</style>
+        </defs>
+        <rect x="20" y="28" width="120" height="80" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.35)" stroke-width="1.5"/>
+        <text x="80" y="52" class="st4" fill="#FCD34D" text-anchor="middle">Material Prep</text>
+        <text x="80" y="65" class="ss4" text-anchor="middle">18% Ni maraging steel</text>
+        <text x="80" y="77" class="ss4" text-anchor="middle">Heat treatment:</text>
+        <text x="80" y="89" class="ss4" text-anchor="middle">solution + ageing</text>
+        <text x="80" y="101" class="ss4" text-anchor="middle">Specimen machining</text>
+        <line x1="140" y1="68" x2="168" y2="68" stroke="#F4A833" stroke-width="1.5" opacity=".6" marker-end="url(#ar4)"/>
+
+        <rect x="170" y="28" width="120" height="80" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.35)" stroke-width="1.5"/>
+        <text x="230" y="52" class="st4" fill="#FCD34D" text-anchor="middle">XRD Analysis</text>
+        <text x="230" y="65" class="ss4" text-anchor="middle">Diffraction peaks</text>
+        <text x="230" y="77" class="ss4" text-anchor="middle">Williamson-Hall plot</text>
+        <text x="230" y="89" class="ss4" text-anchor="middle">Crystallite size (D)</text>
+        <text x="230" y="101" class="ss4" text-anchor="middle">Microstrain (ε)</text>
+        <line x1="290" y1="68" x2="318" y2="68" stroke="#F4A833" stroke-width="1.5" opacity=".6" marker-end="url(#ar4)"/>
+
+        <rect x="320" y="28" width="120" height="80" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.35)" stroke-width="1.5"/>
+        <text x="380" y="52" class="st4" fill="#FCD34D" text-anchor="middle">Lattice Params</text>
+        <text x="380" y="65" class="ss4" text-anchor="middle">Dislocation density</text>
+        <text x="380" y="77" class="ss4" text-anchor="middle">Lattice strain</text>
+        <text x="380" y="89" class="ss4" text-anchor="middle">Phase identification</text>
+        <text x="380" y="101" class="ss4" text-anchor="middle">Scherrer equation</text>
+        <line x1="440" y1="68" x2="468" y2="68" stroke="#F4A833" stroke-width="1.5" opacity=".6" marker-end="url(#ar4)"/>
+
+        <rect x="470" y="28" width="120" height="80" rx="7" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.35)" stroke-width="1.5"/>
+        <text x="530" y="52" class="st4" fill="#FCA5A5" text-anchor="middle">HCF Testing</text>
+        <text x="530" y="65" class="ss4" text-anchor="middle">Rotating bending test</text>
+        <text x="530" y="77" class="ss4" text-anchor="middle">Stress amplitude sweep</text>
+        <text x="530" y="89" class="ss4" text-anchor="middle">Cycles to failure</text>
+        <text x="530" y="101" class="ss4" text-anchor="middle">S-N curve generation</text>
+        <line x1="590" y1="68" x2="618" y2="68" stroke="#F4A833" stroke-width="1.5" opacity=".6" marker-end="url(#ar4)"/>
+
+        <rect x="620" y="28" width="120" height="80" rx="7" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.35)" stroke-width="1.5"/>
+        <text x="680" y="52" class="st4" fill="#A78BFA" text-anchor="middle">Correlation</text>
+        <text x="680" y="65" class="ss4" text-anchor="middle">Lattice params vs</text>
+        <text x="680" y="77" class="ss4" text-anchor="middle">fatigue life (N)</text>
+        <text x="680" y="89" class="ss4" text-anchor="middle">Trend analysis</text>
+        <text x="680" y="101" class="ss4" text-anchor="middle">Failure mechanism</text>
+        <line x1="740" y1="68" x2="768" y2="68" stroke="#F4A833" stroke-width="1.5" opacity=".6" marker-end="url(#ar4)"/>
+
+        <rect x="770" y="28" width="80" height="80" rx="7" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.35)" stroke-width="1.5"/>
+        <text x="810" y="56" class="st4" fill="#A78BFA" text-anchor="middle">Design</text>
+        <text x="810" y="69" class="st4" fill="#A78BFA" text-anchor="middle">Guidance</text>
+        <text x="810" y="82" class="ss4" text-anchor="middle">Optimal heat</text>
+        <text x="810" y="94" class="ss4" text-anchor="middle">treatment window</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<nav class="disc-nav" id="disc-nav">
+  <a class="disc-btn active" data-disc="mat" href="#mat"><span class="disc-dot"></span>Materials Engineer</a>
+  <a class="disc-btn" data-disc="test" href="#test"><span class="disc-dot"></span>Test Engineer</a>
+  <a class="disc-btn" data-disc="struct" href="#struct"><span class="disc-dot"></span>Structural Analysis</a>
+</nav>
+
+<div class="disc-sections">
+
+  <section class="disc-section" id="mat" data-disc="mat">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Materials Engineer</div>
+      <div>
+        <div class="disc-section-title">X-ray Diffraction & Lattice Characterisation</div>
+        <div class="disc-section-sub">Characterising microstructure of 18% Ni maraging steel using XRD and Williamson-Hall analysis</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>18% Ni Maraging Steel — Background</h4>
+        <ul>
+          <li>Ultra-high strength steel: yield strength up to <span class="highlight">2400 MPa</span></li>
+          <li>Used in aerospace: rocket casings, high-stress structural members</li>
+          <li>Strengthening mechanism: precipitation of Ni₃Mo, Ni₃Ti intermetallics during ageing</li>
+          <li>Key challenge: optimising heat treatment for fatigue performance</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>XRD Analysis — Williamson-Hall Method</h4>
+        <ul>
+          <li>Measures <span class="highlight">crystallite size (D)</span> via peak broadening</li>
+          <li>Measures <span class="highlight">microstrain (ε)</span> from lattice distortion</li>
+          <li>W-H plot: β·cos(θ) vs 4·sin(θ) — slope gives strain, intercept gives size</li>
+          <li>Scherrer equation used as cross-check for D</li>
+          <li>Phase identification: martensite / austenite ratio</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>XRD Diffraction Pattern — 18% Ni Steel Before & After Ageing</h5>
+      <p>XRD peaks showing phase changes from solution treatment to aged condition</p>
+      <span class="ph-source">Source: MAJOR_PROJECT_REPORT.pdf (uploaded) — Figure from Chapter 3/4</span>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>Williamson-Hall Plot — Crystallite Size & Microstrain Extraction</h5>
+      <p>W-H plot showing linear fit from which D and ε are extracted per specimen condition</p>
+      <span class="ph-source">Source: MAJOR_PROJECT_REPORT.pdf (uploaded) — Figure from Chapter 4</span>
+    </div>
+  </section>
+
+  <section class="disc-section" id="test" data-disc="test">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Test Engineer</div>
+      <div>
+        <div class="disc-section-title">High Cycle Fatigue Testing</div>
+        <div class="disc-section-sub">S-N curve generation and failure analysis of 18% Ni steel specimens under rotating bending</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>Test Configuration</h4>
+        <ul>
+          <li>Test type: <span class="highlight">rotating bending fatigue</span> (R = −1, fully reversed)</li>
+          <li>Specimens: machined from heat-treated stock, ground and polished</li>
+          <li>Stress levels: multiple amplitudes to generate S-N curve</li>
+          <li>Run-out criterion: 10⁷ cycles (HCF regime)</li>
+          <li>Multiple specimens per condition for statistical validity</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>Heat Treatment Conditions Tested</h4>
+        <ul>
+          <li>Solution annealed only (baseline)</li>
+          <li>Aged at varying temperatures (460°C, 480°C, 510°C)</li>
+          <li>Aged for varying durations (3h, 6h, 9h)</li>
+          <li>Over-aged condition — precipitation coarsening</li>
+        </ul>
+        <div class="result-highlight">
+          <div><div class="rh-val">HCF</div><div class="rh-label">High cycle fatigue regime — &gt;10⁵ cycles to failure</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>S-N Curves — Per Heat Treatment Condition</h5>
+      <p>Log-log S-N plot overlaying all heat treatment conditions, showing endurance limit shift</p>
+      <span class="ph-source">Source: MAJOR_PROJECT_REPORT.pdf (uploaded) — Figure from Chapter 5</span>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>Fracture Surface — SEM/Optical Microscopy</h5>
+      <p>Failure mode identification: fatigue striations, crack initiation site</p>
+      <span class="ph-source">Source: MAJOR_PROJECT_REPORT.pdf (uploaded)</span>
+    </div>
+  </section>
+
+  <section class="disc-section" id="struct" data-disc="struct">
+    <div class="disc-header">
+      <div class="disc-badge"><span>●</span>Structural Analysis</div>
+      <div>
+        <div class="disc-section-title">Lattice Parameters vs Fatigue Life Correlation</div>
+        <div class="disc-section-sub">Establishing the relationship between XRD-derived microstructural parameters and HCF performance</div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="content-card">
+        <h4>Correlation Methodology</h4>
+        <ul>
+          <li>XRD parameters (D, ε, dislocation density) extracted per specimen batch</li>
+          <li>Fatigue life (N at constant stress) measured per same batch</li>
+          <li>Statistical correlation: Pearson R between lattice params and log(N)</li>
+          <li>Trend analysis across heat treatment conditions</li>
+        </ul>
+      </div>
+      <div class="content-card">
+        <h4>Key Structural Findings</h4>
+        <ul>
+          <li>Smaller crystallite size → <span class="highlight">higher fatigue strength</span> (Hall-Petch effect)</li>
+          <li>Higher microstrain (from precipitation) → improved HCF life up to optimal ageing</li>
+          <li>Over-ageing: coarser precipitates → reduced fatigue resistance</li>
+          <li>Peak fatigue performance at intermediate ageing condition</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>Lattice Parameter vs Fatigue Life — Correlation Plot</h5>
+      <p>Scatter plot with trend line: crystallite size (nm) on X-axis, cycles to failure on Y-axis</p>
+      <span class="ph-source">Source: MAJOR_PROJECT_REPORT.pdf (uploaded) — Figure from Chapter 5/6</span>
+    </div>
+    <div class="img-placeholder">
+      <div class="ph-icon">🖼</div>
+      <h5>Project Poster</h5>
+      <p>Full overview poster from final presentation</p>
+      <span class="ph-source">Source: Major_Project_Poster_final_.pdf (uploaded)</span>
+    </div>
+  </section>
+
+</div>
+
+<footer class="page-footer">
+  <div class="footer-text">Mithra Iyangar Ramesh · B.Eng. Aerospace Engineering, RVCE Bangalore</div>
+  <a class="footer-link" href="index.html">← Back to all projects</a>
+</footer>
+
+<script>
+const sections=document.querySelectorAll('.disc-section');
+const navBtns=document.querySelectorAll('.disc-btn');
+function updateNav(){let c='mat';sections.forEach(s=>{if(s.getBoundingClientRect().top<130)c=s.id});navBtns.forEach(b=>b.classList.toggle('active',b.getAttribute('href')==='#'+c));}
+window.addEventListener('scroll',updateNav,{passive:true});updateNav();
+</script>
+</body>
+</html>
