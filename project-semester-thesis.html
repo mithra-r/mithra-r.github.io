@@ -74,6 +74,13 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
 .wide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
 @media(max-width:700px){.wide-grid{grid-template-columns:1fr}}
 .highlight{color:var(--cyan);font-weight:500}.gold{color:var(--gold);font-weight:600}
+/* Images */
+.proj-img{width:100%;border-radius:10px;border:1px solid var(--border);display:block;background:#0a1220}
+.proj-img--medium{width:60%;margin:0 auto;display:block}
+.proj-img--wide{width:85%;margin:0 auto;display:block}
+@media(max-width:700px){.proj-img--medium,.proj-img--wide{width:100%}}
+.img-wrap{margin:2rem 0}
+.img-caption{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.05em;margin-top:.6rem;text-align:center}
 .page-footer{padding:3rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-text{font-size:13px;color:var(--muted)}
 .footer-link{font-size:13px;color:var(--cyan);text-decoration:none;display:flex;align-items:center;gap:.4rem}.footer-link:hover{opacity:.75}
@@ -119,12 +126,13 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
 </header>
 
 <div class="tools-strip">
-  <span class="tools-label">Tools</span>
+  <span class="tools-label">Tools & Methods</span>
   <span class="tool-tag">Python</span>
   <span class="tool-tag">MATLAB</span>
-  <span class="tool-tag">SIMP Method</span>
+  <span class="tool-tag">SIMP</span>
+  <span class="tool-tag">MMA</span>
+  <span class="tool-tag">AM Constraint (Overhang)</span>
   <span class="tool-tag">OptiStruct</span>
-  <span class="tool-tag">Additive Manufacturing</span>
 </div>
 
 <section class="process-section">
@@ -141,11 +149,11 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
           </marker>
           <style>.st3{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600}.ss3{font-family:'Inter',sans-serif;font-size:8.5px;fill:#7A8BA8}.ph3{font-family:'JetBrains Mono',sans-serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase}</style>
         </defs>
-        <text x="70" y="14" class="ph3" fill="#8B5CF6" opacity=".7">SETUP</text>
-        <text x="210" y="14" class="ph3" fill="#8B5CF6" opacity=".7">PARAMETER STUDY</text>
-        <text x="390" y="14" class="ph3" fill="#EF4444" opacity=".7">UNCONSTRAINED</text>
-        <text x="545" y="14" class="ph3" fill="#10B981" opacity=".7">CONSTRAINED (AM)</text>
-        <text x="710" y="14" class="ph3" fill="#F59E0B" opacity=".7">ANALYSIS</text>
+        <text x="75"  y="14" class="ph3" fill="#8B5CF6" opacity=".8" text-anchor="middle">SETUP</text>
+        <text x="220" y="14" class="ph3" fill="#8B5CF6" opacity=".8" text-anchor="middle">PARAMETERS</text>
+        <text x="370" y="14" class="ph3" fill="#EF4444" opacity=".8" text-anchor="middle">UNCONSTRAINED</text>
+        <text x="522" y="14" class="ph3" fill="#10B981" opacity=".8" text-anchor="middle">AM CONSTRAINED</text>
+        <text x="677" y="14" class="ph3" fill="#F59E0B" opacity=".8" text-anchor="middle">ANALYSIS</text>
 
         <rect x="20" y="28" width="110" height="80" rx="7" ry="7" stroke-width="1.5" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.35)"/>
         <text x="75" y="52" class="st3" fill="#A78BFA" text-anchor="middle">4 Benchmarks</text>
@@ -237,29 +245,28 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
       <div class="benchmark-card">
         <span class="bc-icon">⬛</span>
         <div class="bc-name">MBB Beam</div>
-        <div class="bc-desc">Simply supported, central load — classic cantilever-class benchmark</div>
+        <div class="bc-desc">Simply supported, central load — shows the strongest AR sensitivity of all benchmarks</div>
       </div>
       <div class="benchmark-card">
         <span class="bc-icon">📐</span>
         <div class="bc-name">Cantilever Beam</div>
-        <div class="bc-desc">Fixed-free beam with tip load — tests overhang sensitivity</div>
+        <div class="bc-desc">Fixed-free, tip load — smaller tradeoff than MBB; load position is a factor</div>
       </div>
       <div class="benchmark-card">
         <span class="bc-icon">⟵⟶</span>
         <div class="bc-name">Tensile Specimen</div>
-        <div class="bc-desc">Dog-bone geometry under uniaxial tension — filament bridging</div>
+        <div class="bc-desc">Uniaxial tension — dog-bone geometry, tests overhang sensitivity under pure tension</div>
       </div>
       <div class="benchmark-card">
         <span class="bc-icon">↩</span>
         <div class="bc-name">L-Crank</div>
-        <div class="bc-desc">Real-world bell crank geometry — from HiWi project, combined loading</div>
+        <div class="bc-desc">Real-world bell crank from HiWi project — combined loading, validates generalisability</div>
       </div>
     </div>
-    <div class="img-placeholder">
-      <div class="ph-icon">🖼</div>
-      <h5>Topology Results — 4 Benchmarks, Unconstrained vs AM-Constrained</h5>
-      <p>Side-by-side density plots for each case showing how AM constraints change the optimal material distribution</p>
-      <span class="ph-source">Source: MATLAB .fig files — Google Drive → 02_Semesterthesis → 05_Results<br>Open MATLAB figures → Export as PNG (or ask if MATLAB access possible)</span>
+
+    <div class="img-wrap">
+      <img src="images/st_topology_comparison.png" alt="Topology optimisation — without vs with AM overhang constraint" class="proj-img proj-img--wide">
+      <div class="img-caption">Fig. 4.10 — Topology results: left column without overhang filter, right column with AM constraint applied (cantilever beam)</div>
     </div>
   </section>
 
@@ -279,36 +286,35 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
       <div class="content-card">
         <h4>Key Parameter: Aspect Ratio (AR)</h4>
         <ul>
-          <li>AR = element width / height ratio in the mesh</li>
-          <li>Higher AR → more anisotropic mesh → more AM constraint interactions</li>
-          <li>Study varied AR from 1.0 to 5.0</li>
+          <li>AR = length / width ratio of the design domain</li>
+          <li>Study varied AR across range [0.5, 5] for each benchmark</li>
+          <li>Three overhang filter types compared per AR: layer-by-layer, front propagation, front propagation improved</li>
         </ul>
         <div class="result-highlight">
-          <div><div class="rh-val">AR &lt; 2</div><div class="rh-label">Performance loss stays ≤ 5% — safe zone for most applications</div></div>
+          <div><div class="rh-val">AR &lt; 2</div><div class="rh-label">Tradeoff ≤ 5% — independent of overhang filter type</div></div>
         </div>
         <div class="result-highlight">
-          <div><div class="rh-val">AR = 5</div><div class="rh-label">Loss rises to 10–25% — significant; consider mesh refinement</div></div>
+          <div><div class="rh-val">AR = 5</div><div class="rh-label">Tradeoff rises to 10–25% — filter type and load position dependent</div></div>
         </div>
       </div>
       <div class="content-card">
-        <h4>Results Summary</h4>
+        <h4>Results — Thesis Conclusions</h4>
         <table class="data-table">
-          <thead><tr><th>Aspect Ratio</th><th>Performance Loss</th><th>Practical Implication</th></tr></thead>
+          <thead><tr><th>AR Range</th><th>Tradeoff</th><th>Note</th></tr></thead>
           <tbody>
-            <tr><td>&lt; 1.5</td><td class="mono" style="color:#10B981">~1–3%</td><td>Negligible — use freely</td></tr>
-            <tr><td>1.5 – 2.0</td><td class="mono" style="color:#10B981">≤ 5%</td><td>Acceptable for AM design</td></tr>
-            <tr><td>2.0 – 3.5</td><td class="mono" style="color:#F59E0B">5–12%</td><td>Case-dependent, review</td></tr>
-            <tr><td>≥ 5.0</td><td class="mono" style="color:#EF4444">10–25%</td><td>Avoid or refine mesh</td></tr>
+            <tr><td>AR &lt; 2</td><td class="mono" style="color:#10B981">≤ 5%</td><td>Filter-type independent</td></tr>
+            <tr><td>AR &gt; 2.5</td><td class="mono" style="color:#F59E0B">Increases significantly</td><td>MBB more sensitive than cantilever</td></tr>
+            <tr><td>AR ≈ 3.5</td><td class="mono" style="color:var(--muted)">Outliers</td><td>Possible convergence issue</td></tr>
+            <tr><td>AR = 5</td><td class="mono" style="color:#EF4444">10–25%</td><td>Varies by benchmark</td></tr>
           </tbody>
         </table>
-        <p style="font-size:12px;color:var(--muted);margin-top:.5rem">Consistent trend across all 4 benchmark cases — result is geometry-independent.</p>
+        <p style="font-size:12px;color:var(--muted);margin-top:.75rem">A better optimum cannot be obtained by messing with boundaries or BC — the study confirms that AM constraints impose a bounded but unavoidable tradeoff.</p>
       </div>
     </div>
-    <div class="img-placeholder">
-      <div class="ph-icon">🖼</div>
-      <h5>Performance Loss vs Aspect Ratio — All 4 Benchmarks</h5>
-      <p>Plot showing compliance increase (%) as a function of AR for MBB beam, cantilever, tensile specimen, and L-crank</p>
-      <span class="ph-source">Source: MATLAB output from 02_Semesterthesis → 05_Results subfolders</span>
+
+    <div class="img-wrap">
+      <img src="images/st_tradeoff_plot.png" alt="Tradeoff plot — displacement variation with Aspect Ratio" class="proj-img proj-img--wide">
+      <div class="img-caption">Fig. 4.2 — Tradeoff plot: percentage variation in displacement vs Aspect Ratio across overhang filter types (MBB beam)</div>
     </div>
   </section>
 
