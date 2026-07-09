@@ -6,73 +6,90 @@
 <title>Master's Thesis | Mithra Iyangar Ramesh</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0B1625;--navy-card:#0E1E35;--navy-light:#122340;--cyan:#00C9E4;--gold:#F4A833;--white:#F0F4FF;--muted:#7A8BA8;--border:rgba(0,201,228,0.15);--composites:#06B6D4;--optim:#8B5CF6;--prog:#10B981;--struct:#EF4444}
+:root{--navy:#0B1625;--navy-card:#0E1E35;--cyan:#00C9E4;--gold:#F4A833;--white:#F0F4FF;--muted:#7A8BA8;--border:rgba(0,201,228,0.15);--composites:#06B6D4;--optim:#8B5CF6;--prog:#10B981;--struct:#EF4444}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+
 .back-nav{position:fixed;top:0;left:0;right:0;background:rgba(11,22,37,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 clamp(1.5rem,5vw,4rem);height:56px;display:flex;align-items:center;justify-content:space-between}
 .back-link{display:flex;align-items:center;gap:.5rem;color:var(--cyan);text-decoration:none;font-size:13px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;transition:opacity .2s}.back-link:hover{opacity:.75}.back-link svg{width:14px;height:14px}
 .nav-tag{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.08em}
+
 .hero{padding:calc(56px + 5rem) clamp(1.5rem,8vw,7rem) 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:56px;right:0;width:50%;height:100%;background:radial-gradient(ellipse at 70% 30%,rgba(6,182,212,0.09) 0%,transparent 60%),radial-gradient(ellipse at 90% 70%,rgba(139,92,246,0.06) 0%,transparent 50%);pointer-events:none}
 .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase;margin-bottom:1rem}
-.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem;max-width:22ch}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem;max-width:24ch}
 .hero h1 span{color:var(--cyan)}
 .hero-meta{display:flex;flex-wrap:wrap;gap:1.25rem;margin-bottom:2.5rem}
 .meta-pill{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--muted)}
 .meta-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
-.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;max-width:750px}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:1rem;max-width:780px}
 .stat-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1rem}
-.stat-value{font-family:'Space Grotesk',sans-serif;font-size:1.65rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.stat-value{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.35rem}
 .stat-label{font-size:11px;letter-spacing:.05em;color:var(--muted);text-transform:uppercase}
+
 .tools-strip{padding:1.25rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .tools-label{font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
 .tool-tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:.3rem .75rem;border-radius:4px;background:rgba(0,201,228,0.08);border:1px solid rgba(0,201,228,0.2);color:var(--cyan);letter-spacing:.04em}
+
 .process-section{padding:5rem clamp(1.5rem,8vw,7rem)}
 .section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem}
 .section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em}
 .process-chart{background:var(--navy-card);border:1px solid var(--border);border-radius:14px;padding:2.5rem;overflow-x:auto}
-.process-svg-wrap{min-width:820px}
+.process-svg-wrap{min-width:860px}
+
 .disc-nav{position:sticky;top:56px;z-index:50;background:rgba(11,22,37,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,8vw,7rem);display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
 .disc-nav::-webkit-scrollbar{display:none}
-.disc-btn{display:flex;align-items:center;gap:.5rem;padding:1rem 1.25rem;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
-.disc-btn:hover{color:var(--white)}
+.disc-btn{display:flex;align-items:center;gap:.5rem;padding:1rem 1.25rem;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}.disc-btn:hover{color:var(--white)}
+.disc-btn[data-disc="composites"]{--disc-color:var(--composites)}.disc-btn[data-disc="optim"]{--disc-color:var(--optim)}.disc-btn[data-disc="prog"]{--disc-color:var(--prog)}.disc-btn[data-disc="struct"]{--disc-color:var(--struct)}
 .disc-btn.active{color:var(--white);border-bottom-color:var(--disc-color)}
-.disc-btn[data-disc="composites"]{--disc-color:var(--composites)}
-.disc-btn[data-disc="optim"]{--disc-color:var(--optim)}
-.disc-btn[data-disc="prog"]{--disc-color:var(--prog)}
-.disc-btn[data-disc="struct"]{--disc-color:var(--struct)}
 .disc-dot{width:7px;height:7px;border-radius:50%;background:var(--disc-color)}
+
 .disc-sections{padding:0 clamp(1.5rem,8vw,7rem)}
 .disc-section{padding:5rem 0;border-bottom:1px solid var(--border)}.disc-section:last-child{border-bottom:none}
 .disc-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:3rem}
 .disc-badge{display:flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:6px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;margin-top:.3rem;flex-shrink:0}
-[data-disc="composites"] .disc-badge{background:rgba(6,182,212,0.12);color:#67E8F9;border:1px solid rgba(6,182,212,0.25)}
-[data-disc="optim"] .disc-badge{background:rgba(139,92,246,0.12);color:#A78BFA;border:1px solid rgba(139,92,246,0.25)}
-[data-disc="prog"] .disc-badge{background:rgba(16,185,129,0.12);color:#6EE7B7;border:1px solid rgba(16,185,129,0.25)}
-[data-disc="struct"] .disc-badge{background:rgba(239,68,68,0.12);color:#FCA5A5;border:1px solid rgba(239,68,68,0.25)}
+[data-disc="composites"] .disc-badge{background:rgba(6,182,212,.12);color:#67E8F9;border:1px solid rgba(6,182,212,.25)}
+[data-disc="optim"] .disc-badge{background:rgba(139,92,246,.12);color:#A78BFA;border:1px solid rgba(139,92,246,.25)}
+[data-disc="prog"] .disc-badge{background:rgba(16,185,129,.12);color:#6EE7B7;border:1px solid rgba(16,185,129,.25)}
+[data-disc="struct"] .disc-badge{background:rgba(239,68,68,.12);color:#FCA5A5;border:1px solid rgba(239,68,68,.25)}
 .disc-section-title{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:600;letter-spacing:-.01em;line-height:1.2}
 .disc-section-sub{font-size:14px;color:var(--muted);margin-top:.35rem}
+
 .content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem}
 .content-card{background:var(--navy-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
 .content-card h4{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin-bottom:.75rem;color:var(--white)}
 .content-card p,.content-card li{font-size:13.5px;color:var(--muted);line-height:1.65}
 .content-card ul{padding-left:1.1rem}.content-card ul li{margin-bottom:.35rem}
+
 .result-highlight{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:rgba(0,201,228,0.05);border:1px solid rgba(0,201,228,0.15);border-radius:8px;margin-top:.75rem}
-.result-highlight .rh-val{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.result-highlight .rh-val{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--gold);white-space:nowrap}
 .result-highlight .rh-label{font-size:12px;color:var(--muted)}
-.img-placeholder{border:2px dashed rgba(0,201,228,0.2);border-radius:10px;padding:2.5rem;text-align:center;background:rgba(0,201,228,0.02);margin:1.5rem 0}
-.img-placeholder .ph-icon{font-size:2rem;margin-bottom:.75rem;opacity:.4}
-.img-placeholder h5{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:.5rem}
-.img-placeholder p{font-size:12px;color:var(--muted)}
-.img-placeholder .ph-source{display:inline-block;margin-top:.75rem;padding:.3rem .75rem;background:rgba(244,168,51,0.1);border:1px solid rgba(244,168,51,0.2);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.06em}
+
+.wide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+@media(max-width:700px){.wide-grid{grid-template-columns:1fr}}
+
+/* Project images */
+.proj-img{width:100%;border-radius:10px;border:1px solid var(--border);display:block;background:#0a1220}
+.img-wrap{margin:1.5rem 0}
+.img-caption{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.05em;margin-top:.6rem;text-align:center}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+@media(max-width:600px){.img-grid{grid-template-columns:1fr}}
+
 .data-table{width:100%;border-collapse:collapse;font-size:13px;margin:1rem 0}
 .data-table th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.6rem .75rem;text-align:left;border-bottom:1px solid var(--border)}
 .data-table td{padding:.65rem .75rem;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--white)}
 .data-table td.mono{font-family:'JetBrains Mono',monospace;color:var(--cyan)}
+.data-table td.green{color:#6EE7B7;font-weight:600}
 .data-table tr:last-child td{border-bottom:none}
-.wide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
-@media(max-width:700px){.wide-grid{grid-template-columns:1fr}}
+
 .highlight{color:var(--cyan);font-weight:500}.gold{color:var(--gold);font-weight:600}
+/* Stacked super+subscript for LP notation: V with 1-4 above, A,B,D below */
+.lp{display:inline-grid;grid-template-columns:auto auto;align-items:center;vertical-align:middle}
+.lp .lp-v{grid-row:1/3;font-style:italic;font-size:1em}
+.lp .lp-scripts{display:flex;flex-direction:column;font-size:.6em;line-height:1.2;margin-left:.05em}
+.lp .lp-sup{align-self:flex-end;margin-bottom:.1em}
+.lp .lp-sub{align-self:flex-start;margin-top:.1em}
+
 .page-footer{padding:3rem clamp(1.5rem,8vw,7rem);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-text{font-size:13px;color:var(--muted)}
 .footer-link{font-size:13px;color:var(--cyan);text-decoration:none;display:flex;align-items:center;gap:.4rem}.footer-link:hover{opacity:.75}
@@ -88,111 +105,145 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
   <span class="nav-tag">PROJECT 01 / 05</span>
 </nav>
 
+<!-- HERO -->
 <header class="hero">
   <div class="hero-eyebrow">DLR Braunschweig · TU Munich · Oct 2024 – Mar 2025</div>
-  <h1>Characterizing <span>Lamination Parameters</span> Realizable Domain for Practical Composite Layups</h1>
+  <h1>Characterization of <span>Lamination Parameters</span> Realizable Domain for Practical Composite Layups</h1>
   <div class="hero-meta">
     <span class="meta-pill"><span class="dot"></span>6 months</span>
     <span class="meta-pill"><span class="dot"></span>DLR Institute of Composite Structures</span>
-    <span class="meta-pill"><span class="dot"></span>Grade: 2.0 (M.Sc.)</span>
+    <span class="meta-pill"><span class="dot"></span>Grade: 1.3</span>
     <span class="meta-pill"><span class="dot"></span>Bi-level optimisation framework</span>
   </div>
   <div class="hero-stats">
     <div class="stat-card">
       <div class="stat-value">69.3%</div>
-      <div class="stat-label">SF mismatch reduction (tension)</div>
+      <div class="stat-label">SF mismatch reduction — tension dominant case</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">100%</div>
-      <div class="stat-label">Elimination of coupled shear/compression error</div>
+      <div class="stat-label">SF mismatch elimination — compression dominant case (LC5)</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">CFRP</div>
       <div class="stat-label">Material class studied</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value">CLT</div>
-      <div class="stat-label">Core analysis framework</div>
+      <div class="stat-value">LPs</div>
+      <div class="stat-label">Core analysis framework — Lamination Parameters</div>
     </div>
   </div>
 </header>
 
+<!-- TOOLS STRIP -->
 <div class="tools-strip">
   <span class="tools-label">Tools</span>
   <span class="tool-tag">Python</span>
   <span class="tool-tag">DLR Lightworks</span>
-  <span class="tool-tag">Classical Lamination Theory</span>
-  <span class="tool-tag">Bi-level Optimisation</span>
+  <span class="tool-tag">LAYLA</span>
+  <span class="tool-tag">Lamination Parameters</span>
   <span class="tool-tag">NumPy / SciPy</span>
   <span class="tool-tag">Matplotlib</span>
+  <span class="tool-tag">Classical Lamination Theory</span>
 </div>
 
+<!-- PROCESS FLOWCHART -->
 <section class="process-section">
   <div style="margin-bottom:2.5rem">
-    <div class="section-eyebrow">How I approached this</div>
-    <div class="section-title">Research Methodology</div>
+    <div class="section-eyebrow">Research methodology</div>
+    <div class="section-title">How I approached this</div>
   </div>
   <div class="process-chart">
     <div class="process-svg-wrap">
-      <svg viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="overflow:visible">
+      <svg viewBox="0 0 860 215" xmlns="http://www.w3.org/2000/svg" width="100%" style="overflow:visible">
         <defs>
-          <marker id="arr2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
             <polygon points="0 0,8 3,0 6" fill="#00C9E4" opacity=".7"/>
           </marker>
-          <style>.step-box2{rx:7;ry:7;stroke-width:1.5}.step-t2{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600}.step-s2{font-family:'Inter',sans-serif;font-size:8.5px;fill:#7A8BA8}.phase2{font-family:'JetBrains Mono',sans-serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase}</style>
+          <style>
+            .st{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:600}
+            .ss{font-family:'Inter',sans-serif;font-size:8.5px;fill:#7A8BA8}
+            .ph{font-family:'JetBrains Mono',sans-serif;font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+          </style>
         </defs>
-        <text x="70" y="14" class="phase2" fill="#06B6D4" opacity=".7">THEORY</text>
-        <text x="215" y="14" class="phase2" fill="#8B5CF6" opacity=".7">DOMAIN MAPPING</text>
-        <text x="385" y="14" class="phase2" fill="#EF4444" opacity=".7">OPTIMISATION</text>
-        <text x="550" y="14" class="phase2" fill="#10B981" opacity=".7">VALIDATION</text>
-        <text x="720" y="14" class="phase2" fill="#F59E0B" opacity=".7">RESULTS</text>
 
-        <rect x="20" y="30" width="110" height="72" class="step-box2" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.35)"/>
-        <text x="75" y="54" class="step-t2" fill="#67E8F9" text-anchor="middle">CLT Framework</text>
-        <text x="75" y="67" class="step-s2" text-anchor="middle">Lamination parameters</text>
-        <text x="75" y="79" class="step-s2" text-anchor="middle">A/B/D matrix derivation</text>
-        <text x="75" y="91" class="step-s2" text-anchor="middle">Feasibility constraints</text>
-        <line x1="130" y1="66" x2="158" y2="66" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr2)"/>
+        <!-- Phase labels — positioned above each block -->
+        <text x="75"  y="18" class="ph" fill="#06B6D4" opacity=".8" text-anchor="middle">THEORY</text>
+        <text x="220" y="18" class="ph" fill="#06B6D4" opacity=".8" text-anchor="middle">DOMAIN MAPPING</text>
+        <text x="375" y="18" class="ph" fill="#8B5CF6" opacity=".8" text-anchor="middle">1ST LEVEL OPT.</text>
+        <text x="530" y="18" class="ph" fill="#8B5CF6" opacity=".8" text-anchor="middle">2ND LEVEL OPT.</text>
+        <text x="680" y="18" class="ph" fill="#10B981" opacity=".8" text-anchor="middle">VALIDATION</text>
+        <text x="808" y="18" class="ph" fill="#F59E0B" opacity=".8" text-anchor="middle">RESULTS</text>
 
-        <rect x="160" y="30" width="115" height="72" class="step-box2" fill="rgba(8,182,212,.1)" stroke="rgba(6,182,212,.35)"/>
-        <text x="217" y="54" class="step-t2" fill="#67E8F9" text-anchor="middle">Realizable Domain</text>
-        <text x="217" y="67" class="step-s2" text-anchor="middle">Discrete layup enumeration</text>
-        <text x="217" y="79" class="step-s2" text-anchor="middle">LP space mapping</text>
-        <text x="217" y="91" class="step-s2" text-anchor="middle">Practical constraints</text>
-        <line x1="275" y1="66" x2="303" y2="66" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr2)"/>
+        <!-- Step 1: LP Framework -->
+        <rect x="20" y="30" width="110" height="88" rx="7" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.4)" stroke-width="1.5"/>
+        <text x="75" y="52" class="st" fill="#67E8F9" text-anchor="middle">LP Framework</text>
+        <text x="75" y="65" class="ss" text-anchor="middle">A/B/D matrix via</text>
+        <text x="75" y="77" class="ss" text-anchor="middle">CLT and/or LPs</text>
+        <text x="75" y="89" class="ss" text-anchor="middle">V&#x00B9;&#x207B;&#x2074;_(A,B,D) variables</text>
+        <text x="75" y="101" class="ss" text-anchor="middle">Feasibility constraints</text>
+        <text x="75" y="113" class="ss" text-anchor="middle">Design guidelines</text>
+        <line x1="130" y1="74" x2="158" y2="74" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr)"/>
 
-        <rect x="305" y="30" width="115" height="72" class="step-box2" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.35)"/>
-        <text x="362" y="50" class="step-t2" fill="#A78BFA" text-anchor="middle">Bi-level</text>
-        <text x="362" y="62" class="step-t2" fill="#A78BFA" text-anchor="middle">Optimisation</text>
-        <text x="362" y="75" class="step-s2" text-anchor="middle">Outer: structural opt.</text>
-        <text x="362" y="87" class="step-s2" text-anchor="middle">Inner: layup retrieval</text>
-        <text x="362" y="99" class="step-s2" text-anchor="middle">Python subroutines</text>
-        <line x1="420" y1="66" x2="448" y2="66" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr2)"/>
+        <!-- Step 2: Realizable Domain -->
+        <rect x="160" y="30" width="120" height="88" rx="7" fill="rgba(6,182,212,.1)" stroke="rgba(6,182,212,.4)" stroke-width="1.5"/>
+        <text x="220" y="52" class="st" fill="#67E8F9" text-anchor="middle">Realizable Domain</text>
+        <text x="220" y="65" class="ss" text-anchor="middle">Vector analysis of LPs</text>
+        <text x="220" y="77" class="ss" text-anchor="middle">Characterize LP space</text>
+        <text x="220" y="89" class="ss" text-anchor="middle">satisfying all DGs</text>
+        <text x="220" y="101" class="ss" text-anchor="middle">Per guideline &amp; combined</text>
+        <line x1="280" y1="74" x2="308" y2="74" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr)"/>
 
-        <rect x="450" y="30" width="115" height="72" class="step-box2" fill="rgba(16,185,129,.1)" stroke="rgba(16,185,129,.35)"/>
-        <text x="507" y="54" class="step-t2" fill="#6EE7B7" text-anchor="middle">CFRP Panel FEA</text>
-        <text x="507" y="67" class="step-s2" text-anchor="middle">DLR Lightworks solver</text>
-        <text x="507" y="79" class="step-s2" text-anchor="middle">Load: tension, shear</text>
-        <text x="507" y="91" class="step-s2" text-anchor="middle">compression, coupled</text>
-        <line x1="565" y1="66" x2="593" y2="66" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr2)"/>
+        <!-- Step 3: First Level Optimisation -->
+        <rect x="310" y="30" width="120" height="88" rx="7" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.4)" stroke-width="1.5"/>
+        <text x="370" y="50" class="st" fill="#A78BFA" text-anchor="middle">First Level</text>
+        <text x="370" y="62" class="st" fill="#A78BFA" text-anchor="middle">Optimisation</text>
+        <text x="370" y="76" class="ss" text-anchor="middle">Structural opt. via LPs</text>
+        <text x="370" y="88" class="ss" text-anchor="middle">DLR Lightworks (FEA)</text>
+        <text x="370" y="100" class="ss" text-anchor="middle">Minimise mass /</text>
+        <text x="370" y="112" class="ss" text-anchor="middle">maximise safety factor</text>
+        <line x1="430" y1="74" x2="458" y2="74" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr)"/>
 
-        <rect x="595" y="30" width="115" height="72" class="step-box2" fill="rgba(16,185,129,.1)" stroke="rgba(16,185,129,.35)"/>
-        <text x="652" y="54" class="step-t2" fill="#6EE7B7" text-anchor="middle">SF Correlation</text>
-        <text x="652" y="67" class="step-s2" text-anchor="middle">Continuous LP vs</text>
-        <text x="652" y="79" class="step-s2" text-anchor="middle">discrete layup results</text>
-        <text x="652" y="91" class="step-s2" text-anchor="middle">Mismatch quantified</text>
-        <line x1="710" y1="66" x2="738" y2="66" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr2)"/>
+        <!-- Step 4: Second Level Optimisation -->
+        <rect x="460" y="30" width="120" height="88" rx="7" fill="rgba(139,92,246,.1)" stroke="rgba(139,92,246,.4)" stroke-width="1.5"/>
+        <text x="520" y="50" class="st" fill="#A78BFA" text-anchor="middle">Second Level</text>
+        <text x="520" y="62" class="st" fill="#A78BFA" text-anchor="middle">Optimisation</text>
+        <text x="520" y="76" class="ss" text-anchor="middle">Stacking sequence</text>
+        <text x="520" y="88" class="ss" text-anchor="middle">retrieval via LAYLA</text>
+        <text x="520" y="100" class="ss" text-anchor="middle">Closest discrete layup</text>
+        <text x="520" y="112" class="ss" text-anchor="middle">to target LPs</text>
+        <line x1="580" y1="74" x2="608" y2="74" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr)"/>
 
-        <rect x="740" y="30" width="105" height="72" class="step-box2" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.35)"/>
-        <text x="792" y="54" class="step-t2" fill="#FCD34D" text-anchor="middle">Reduction</text>
-        <text x="792" y="67" class="step-s2" text-anchor="middle">69.3% SF error cut</text>
-        <text x="792" y="79" class="step-s2" text-anchor="middle">100% elimination</text>
-        <text x="792" y="91" class="step-s2" text-anchor="middle">(coupled shear/comp.)</text>
+        <!-- Step 5: Validation -->
+        <rect x="610" y="30" width="120" height="88" rx="7" fill="rgba(16,185,129,.1)" stroke="rgba(16,185,129,.4)" stroke-width="1.5"/>
+        <text x="670" y="52" class="st" fill="#6EE7B7" text-anchor="middle">Validation</text>
+        <text x="670" y="66" class="ss" text-anchor="middle">SF: continuous LP</text>
+        <text x="670" y="78" class="ss" text-anchor="middle">vs discrete layup</text>
+        <text x="670" y="90" class="ss" text-anchor="middle">6 benchmark load cases</text>
+        <text x="670" y="102" class="ss" text-anchor="middle">from literature</text>
+        <text x="670" y="114" class="ss" text-anchor="middle">Mismatch quantified</text>
+        <line x1="730" y1="74" x2="758" y2="74" stroke="#00C9E4" stroke-width="1.5" opacity=".6" marker-end="url(#arr)"/>
+
+        <!-- Step 6: Results -->
+        <rect x="760" y="30" width="90" height="88" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.4)" stroke-width="1.5"/>
+        <text x="805" y="52" class="st" fill="#FCD34D" text-anchor="middle">Results</text>
+        <text x="805" y="62" class="ss" text-anchor="middle">−69.3% SF error</text>
+        <text x="805" y="74" class="ss" text-anchor="middle">(LC6: tension dom.)</text>
+        <text x="805" y="86" class="ss" text-anchor="middle">−100% mismatch</text>
+        <text x="805" y="98" class="ss" text-anchor="middle">(LC5: compression</text>
+        <text x="805" y="110" class="ss" text-anchor="middle">dominant)</text>
+        <text x="805" y="122" class="ss" text-anchor="middle">LC1–4: inactive</text>
+
+        <!-- Iteration loop arrow -->
+        <path d="M 805 118 L 805 165 L 370 165 L 370 118" stroke="#F4A833" stroke-width="1.2" fill="none" opacity=".35" stroke-dasharray="5,3"/>
+        <polygon points="373,118 370,110 367,118" fill="#F4A833" opacity=".4"/>
+        <text x="587" y="180" class="ph" fill="#F4A833" opacity=".55" text-anchor="middle">ITERATE UNTIL CONVERGED</text>
       </svg>
     </div>
   </div>
 </section>
 
+<!-- DISCIPLINE NAV -->
 <nav class="disc-nav" id="disc-nav">
   <a class="disc-btn active" data-disc="composites" href="#composites"><span class="disc-dot"></span>Composites Engineer</a>
   <a class="disc-btn" data-disc="optim" href="#optim"><span class="disc-dot"></span>Optimisation Engineer</a>
@@ -202,181 +253,205 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
 
 <div class="disc-sections">
 
+  <!-- ── TAB 1: COMPOSITES ── -->
   <section class="disc-section" id="composites" data-disc="composites">
     <div class="disc-header">
       <div class="disc-badge"><span>●</span>Composites Engineer</div>
       <div>
-        <div class="disc-section-title">Classical Lamination Theory & Lamination Parameters</div>
-        <div class="disc-section-sub">Characterising the feasible design space of composite layups using lamination parameter (LP) framework</div>
+        <div class="disc-section-title">Lamination Parameters & Realizable Domain Characterization</div>
+        <div class="disc-section-sub">Studying the feasible LP space achievable with practical composite layups satisfying aerospace design guidelines</div>
       </div>
     </div>
-    <div class="content-grid">
+
+    <div class="wide-grid">
       <div class="content-card">
         <h4>Core Theory — Lamination Parameters</h4>
         <ul>
-          <li>Lamination parameters (V1–V4, W1–W4) condense layup stiffness into 12 scalar variables</li>
-          <li>A/B/D stiffness matrix fully described via LPs + invariants (CLT)</li>
-          <li>Continuous LP optimisation produces optimal stiffness targets</li>
-          <li>Challenge: not all LP combinations correspond to physically realizable discrete layups</li>
+          <li>Lamination parameters <span class="highlight"><span class="lp"><span class="lp-v">V</span><span class="lp-scripts"><span class="lp-sup">A,B,D</span><span class="lp-sub">1–4</span></span></span></span> condense layup stiffness into 12 scalar variables (4 in-plane, 4 coupling, 4 bending)</li>
+          <li>A/B/D stiffness matrices are formulated using CLT and/or LPs combined with material invariants</li>
+          <li>Continuous LP optimisation produces ideal stiffness targets — but not all LP combinations correspond to physically realizable discrete layups</li>
+          <li><span class="highlight">Challenge:</span> Not all feasible LP combinations satisfy the design guidelines imposed in practice</li>
         </ul>
         <div class="result-highlight">
-          <div><div class="rh-val">Realizable Domain</div><div class="rh-label">The subset of LP space achievable with practical layup sequences</div></div>
+          <div><div class="rh-val">Realizable Domain</div><div class="rh-label">The subset of LP space achievable with practical layups that satisfy all design guidelines</div></div>
         </div>
       </div>
       <div class="content-card">
-        <h4>Practical Layup Constraints Studied</h4>
+        <h4>Design Guidelines Studied</h4>
         <ul>
-          <li><span class="highlight">Ply angle discretisation</span>: 0°, ±45°, 90° families</li>
-          <li><span class="highlight">Symmetry</span>: symmetric mid-plane (B=0 requirement)</li>
-          <li><span class="highlight">Balance</span>: equal +θ/−θ plies</li>
-          <li><span class="highlight">Contiguity</span>: max. consecutive same-angle plies</li>
-          <li><span class="highlight">10% rule</span>: minimum ply fraction per angle</li>
+          <li><span class="highlight">Disorientation:</span> Maximum angle change between adjacent plies (≤ 45°)</li>
+          <li><span class="highlight">Damage Tolerance (DamTol):</span> ±45° plies must be the outermost plies</li>
+          <li><span class="highlight">Balance:</span> Equal number of +θ and −θ plies (net in-plane shear coupling = 0)</li>
+          <li><span class="highlight">Contiguity:</span> Maximum number of consecutive plies with the same orientation</li>
+          <li><span class="highlight">10% Rule:</span> Minimum 10% of plies in each of 0°, ±45°, 90° families</li>
+          <li><span class="highlight">Symmetry:</span> Symmetric mid-plane (B matrix = 0)</li>
         </ul>
       </div>
     </div>
-    <div class="img-placeholder">
-      <div class="ph-icon">🖼</div>
-      <h5>Lamination Parameter Domain — Feasible Region Plot</h5>
-      <p>2D or 3D visualisation of realizable LP space vs continuous LP space, showing the gap that causes SF mismatch</p>
-      <span class="ph-source">Source: Thesis figures / Python Matplotlib output</span>
-    </div>
-    <div class="content-card">
-      <h4>Why This Matters</h4>
-      <p>When continuous LP optimisation selects LPs outside the realizable domain, the retrieved discrete layup cannot reproduce the target stiffness. This creates a <span class="highlight">safety factor prediction error</span> between the optimised design and the manufacturable layup. This thesis quantifies and reduces that error.</p>
+
+    <div class="img-wrap">
+      <img src="images/mt_combined_anim1.gif" alt="Realizable LP domain — all design guidelines combined" class="proj-img">
+      <div class="img-caption">Realizable domain in LP space — progressively constrained by applying all six design guidelines</div>
     </div>
   </section>
 
+  <!-- ── TAB 2: OPTIMISATION ── -->
   <section class="disc-section" id="optim" data-disc="optim">
     <div class="disc-header">
       <div class="disc-badge"><span>●</span>Optimisation Engineer</div>
       <div>
         <div class="disc-section-title">Bi-level Optimisation Framework</div>
-        <div class="disc-section-sub">Outer structural optimisation coupled with inner layup retrieval constrained to the realizable domain</div>
+        <div class="disc-section-sub">First level structural optimisation via LPs coupled with second level stacking sequence retrieval constrained to the realizable domain</div>
       </div>
     </div>
+
     <div class="wide-grid">
       <div class="content-card">
-        <h4>Outer Level — Structural Optimisation</h4>
+        <h4>First Level — Structural Optimisation</h4>
         <ul>
           <li>Minimise mass / maximise safety factor for CFRP panels</li>
           <li>Design variables: lamination parameters (continuous)</li>
-          <li>Constraints: LP feasibility + structural performance</li>
-          <li>Solver: Python (SciPy optimise)</li>
+          <li>Solver: <span class="highlight">DLR Lightworks</span> — in-house composite panel FEA</li>
+          <li>Constraints: LP feasibility + structural performance targets</li>
+          <li>Output: optimal LP vector (continuous, may lie outside realizable domain)</li>
         </ul>
       </div>
       <div class="content-card">
-        <h4>Inner Level — Layup Retrieval</h4>
+        <h4>Second Level — Stacking Sequence Retrieval</h4>
         <ul>
-          <li>Given target LPs, find closest discrete layup</li>
+          <li>Given target LPs from first level, find closest discrete layup</li>
           <li>Search constrained to realizable domain characterised in thesis</li>
+          <li>Tool: <span class="highlight">LAYLA</span> — open source stacking sequence retrieval code</li>
+          <li>Discrete ply angles: <span class="highlight">15° steps</span> in range [−90°, +90°]</li>
           <li>Minimise LP distance: ‖V_target − V_discrete‖</li>
-          <li>Output: manufacturable ply sequence</li>
+          <li>Output: manufacturable ply sequence satisfying all design guidelines</li>
         </ul>
       </div>
     </div>
+
+    <div class="content-card" style="margin-bottom:1.5rem">
+      <h4>Research Gap — Why This Matters</h4>
+      <p>When the first level optimisation selects LPs outside the realizable domain, the second level retrieval cannot reproduce the target stiffness. This creates a <span class="highlight">safety factor prediction error</span> — the optimised design on paper does not match the manufacturable layup in practice. This thesis characterises the realizable domain and constrains the first level to it, directly reducing this mismatch.</p>
+    </div>
+
+    <div class="img-wrap">
+      <img src="images/mt_research_gap.png" alt="Research gap and motivation" class="proj-img">
+      <div class="img-caption">Research gap — the disconnect between continuous LP optimisation and discrete layup retrieval (Slide 10)</div>
+    </div>
+
+    <h4 style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin:2rem 0 1rem;color:var(--white)">Benchmark Load Cases</h4>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:1rem">Six benchmark load cases from literature used to validate the framework across tension-dominant, compression, shear, and coupled loading scenarios.</p>
+
+    <div class="content-card" style="margin-bottom:1.5rem">
+      <table class="data-table">
+        <thead><tr><th>Load Case</th><th>Nx (N/mm)</th><th>Nxy (N/mm)</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>LC1</td><td class="mono">0</td><td class="mono">−800</td><td>Pure shear</td></tr>
+          <tr><td>LC2</td><td class="mono">0</td><td class="mono">+400</td><td>Pure shear</td></tr>
+          <tr><td>LC3</td><td class="mono">−100</td><td class="mono">+500</td><td>Coupled shear + compression</td></tr>
+          <tr><td>LC4</td><td class="mono">−300</td><td class="mono">−300</td><td>Coupled shear + compression</td></tr>
+          <tr><td>LC5</td><td class="mono">−500</td><td class="mono">+200</td><td>Compression dominant</td></tr>
+          <tr><td>LC6</td><td class="mono">+500,000</td><td class="mono">+100</td><td>Tension dominant ← 69.3% reduction</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="content-grid">
-      <div class="content-card">
-        <h4>Load Cases Evaluated</h4>
-        <ul>
-          <li>Uniaxial <span class="highlight">tension</span> — Nxx loading</li>
-          <li>Uniaxial <span class="highlight">compression</span> — buckling-critical</li>
-          <li>Pure <span class="highlight">shear</span> — Nxy loading</li>
-          <li><span class="highlight">Coupled shear + compression</span> — worst-case interaction</li>
-        </ul>
-      </div>
       <div class="content-card">
         <h4>Key Results by Load Case</h4>
         <table class="data-table">
-          <thead><tr><th>Load Case</th><th>SF Mismatch Reduction</th></tr></thead>
+          <thead><tr><th>Load Case</th><th>Outcome</th></tr></thead>
           <tbody>
-            <tr><td>Tension</td><td class="mono" style="color:#10B981">−69.3%</td></tr>
-            <tr><td>Compression</td><td class="mono" style="color:#10B981">Significant reduction</td></tr>
-            <tr><td>Coupled shear/comp.</td><td class="mono" style="color:#10B981">100% eliminated</td></tr>
+            <tr><td>LC1, LC2, LC3, LC4</td><td class="mono" style="color:var(--muted)">Constraints inactive — no mismatch created</td></tr>
+            <tr><td>LC5 (compression dominant)</td><td class="mono green">100% mismatch eliminated</td></tr>
+            <tr><td>LC6 (tension dominant)</td><td class="mono green">−69.3% mismatch reduction</td></tr>
           </tbody>
         </table>
       </div>
-    </div>
-    <div class="img-placeholder">
-      <div class="ph-icon">🖼</div>
-      <h5>Bi-level Optimisation Convergence Plot</h5>
-      <p>Outer loop objective vs iteration; inner loop LP distance convergence</p>
-      <span class="ph-source">Source: Python Matplotlib output from thesis scripts</span>
+      <div class="content-card">
+        <h4>Interpretation</h4>
+        <p style="margin-bottom:.65rem">For LC1–LC4, the first level optimum already lies within the realizable domain — so the derived constraints are inactive and no mismatch is generated in the first place.</p>
+        <p style="margin-bottom:.65rem">For <span class="gold">LC5</span> (compression dominant), the realizable domain constraint brings the first level optimum fully within reach of the second level — <span class="gold">100% mismatch elimination</span>.</p>
+        <p>For <span class="gold">LC6</span> (tension dominant, Nx = 500,000 N/mm), the LP space is largest, placing the unconstrained optimum furthest from the realizable domain. The derived constraints reduce this mismatch by <span class="gold">69.3%</span>.</p>
+      </div>
     </div>
   </section>
 
+  <!-- ── TAB 3: PROGRAMMING ── -->
   <section class="disc-section" id="prog" data-disc="prog">
     <div class="disc-header">
       <div class="disc-badge"><span>●</span>Programming</div>
       <div>
         <div class="disc-section-title">Python Automation & Subroutine Development</div>
-        <div class="disc-section-sub">Developed Python framework automating the full CLT–LP–optimisation–retrieval pipeline at DLR</div>
+        <div class="disc-section-sub">Built Python framework at DLR automating the full LP characterisation → first level → second level pipeline</div>
       </div>
     </div>
     <div class="content-grid">
       <div class="content-card">
         <h4>Modules Developed</h4>
         <ul>
-          <li><span class="highlight">CLT solver</span>: compute A/B/D matrices from ply angles + thicknesses</li>
-          <li><span class="highlight">LP extractor</span>: convert layup sequences to lamination parameters</li>
-          <li><span class="highlight">Domain mapper</span>: enumerate and store realizable LP combinations</li>
-          <li><span class="highlight">Optimiser wrapper</span>: interface with SciPy for outer/inner levels</li>
-          <li><span class="highlight">DLR Lightworks interface</span>: automate FEA calls, parse results</li>
+          <li><span class="highlight">LP extractor</span>: convert layup sequences to lamination parameters <span class="lp"><span class="lp-v">V</span><span class="lp-scripts"><span class="lp-sup">A,B,D</span><span class="lp-sub">1–4</span></span></span></li>
+          <li><span class="highlight">Domain mapper</span>: vector analysis of LP space per design guideline</li>
+          <li><span class="highlight">A/B/D builder</span>: formulate stiffness matrices from LPs + material invariants</li>
+          <li><span class="highlight">DLR Lightworks interface</span>: automate first level FEA calls, parse SF results</li>
+          <li><span class="highlight">LAYLA interface</span>: invoke second level stacking sequence retrieval, collect discrete layup output</li>
+          <li><span class="highlight">Mismatch analyser</span>: compare SF from continuous LP vs discrete layup, compute percentage reduction</li>
         </ul>
       </div>
       <div class="content-card">
         <h4>Technical Stack</h4>
         <ul>
-          <li>Python 3.x — core framework</li>
-          <li>NumPy — matrix algebra (CLT, LP calculations)</li>
-          <li>SciPy — constrained optimisation (SLSQP, Nelder-Mead)</li>
-          <li>Matplotlib — result visualisation, domain plots</li>
-          <li>DLR Lightworks — composite panel FEA (internal DLR tool)</li>
+          <li><span class="highlight">Python 3.x</span> — core framework</li>
+          <li><span class="highlight">NumPy</span> — matrix algebra (A/B/D, LP calculations)</li>
+          <li><span class="highlight">SciPy</span> — constrained optimisation (SLSQP)</li>
+          <li><span class="highlight">Matplotlib</span> — LP domain plots, result visualisation</li>
+          <li><span class="highlight">DLR Lightworks</span> — composite panel FEA, first level solver (DLR in-house tool)</li>
+          <li><span class="highlight">LAYLA</span> — open source stacking sequence retrieval, second level solver</li>
         </ul>
       </div>
     </div>
   </section>
 
+  <!-- ── TAB 4: STRUCTURAL ── -->
   <section class="disc-section" id="struct" data-disc="struct">
     <div class="disc-header">
       <div class="disc-badge"><span>●</span>Structural Analysis</div>
       <div>
         <div class="disc-section-title">CFRP Panel Analysis & Safety Factor Validation</div>
-        <div class="disc-section-sub">Structural performance of composite panels under combined loading, comparing continuous LP vs discrete layup predictions</div>
+        <div class="disc-section-sub">Structural performance of composite panels under combined loading — comparing continuous LP predictions vs retrieved discrete layup results</div>
       </div>
     </div>
-    <div class="content-grid">
+    <div class="wide-grid">
       <div class="content-card">
         <h4>Panel Configuration</h4>
         <ul>
           <li>Material: <span class="highlight">CFRP (Carbon Fibre Reinforced Polymer)</span></li>
-          <li>Stacking sequences: standard aerospace layup families</li>
-          <li>Analysis tool: DLR Lightworks (in-house composite FEA)</li>
-          <li>Output: first-ply failure, buckling load, safety factors</li>
+          <li>Stacking sequences: <span class="highlight">optimised for benchmark load cases from literature</span></li>
+          <li>Analysis tool: DLR Lightworks (in-house composite FEA — first-ply failure, buckling)</li>
+          <li>Output metrics: safety factors per load case, LP-to-layup mismatch</li>
         </ul>
       </div>
       <div class="content-card">
         <h4>Validation Approach</h4>
         <ul>
-          <li>Step 1: Optimise with continuous LPs → get optimal SF</li>
-          <li>Step 2: Retrieve discrete layup → evaluate actual SF</li>
-          <li>Step 3: Quantify mismatch (baseline method)</li>
-          <li>Step 4: Repeat with realizable-domain-constrained LPs</li>
-          <li>Step 5: Compare mismatch → demonstrate improvement</li>
+          <li><strong>Step 1:</strong> Optimise with unconstrained LPs (first level) → get optimal SF</li>
+          <li><strong>Step 2:</strong> Retrieve discrete layup (second level, LAYLA) → evaluate actual SF</li>
+          <li><strong>Step 3:</strong> Quantify SF mismatch (baseline)</li>
+          <li><strong>Step 4:</strong> Repeat with realizable-domain-constrained first level LPs</li>
+          <li><strong>Step 5:</strong> Compare mismatch → demonstrate reduction</li>
         </ul>
       </div>
     </div>
-    <div class="img-placeholder">
-      <div class="ph-icon">🖼</div>
-      <h5>Safety Factor Comparison — Before vs After Domain Constraint</h5>
-      <p>Bar or scatter plot showing predicted SF (continuous LP) vs actual SF (discrete layup), before and after the thesis approach</p>
-      <span class="ph-source">Source: Thesis results chapter / Python output figures</span>
+    <div class="img-wrap">
+      <img src="images/mt_validation_results.png" alt="Validation results — SF mismatch before and after" class="proj-img">
+      <div class="img-caption">Validation results — SF mismatch per load case, before and after realizable domain constraint (Slide 21)</div>
     </div>
   </section>
 
-</div>
+</div><!-- /disc-sections -->
 
 <footer class="page-footer">
-  <div class="footer-text">Mithra Iyangar Ramesh · M.Sc. Aerospace Engineering, TU Munich</div>
+  <div class="footer-text">Mithra Iyangar Ramesh · M.Sc. Aerospace Engineering, TU Munich · Grade: 1.3</div>
   <a class="footer-link" href="index.html">← Back to all projects</a>
 </footer>
 
