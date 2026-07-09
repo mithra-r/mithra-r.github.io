@@ -70,8 +70,12 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
 
 /* Project images */
 .proj-img{width:100%;border-radius:10px;border:1px solid var(--border);display:block;background:#0a1220}
-.img-wrap{margin:1.5rem 0}
-.img-caption{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.05em;margin-top:.6rem;text-align:center}
+.proj-img--medium{width:55%;margin:0 auto;display:block}
+.proj-img--wide{width:80%;margin:0 auto;display:block}
+@media(max-width:700px){.proj-img--medium,.proj-img--wide{width:100%}}
+.img-wrap{margin:2rem 0}
+.img-caption{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:.05em;margin-top:.6rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.img-citation{font-size:10.5px;color:rgba(122,139,168,0.65);font-style:italic}
 .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
 @media(max-width:600px){.img-grid{grid-template-columns:1fr}}
 
@@ -290,8 +294,11 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
     </div>
 
     <div class="img-wrap">
-      <img src="images/mt_combined_anim1.gif" alt="Realizable LP domain — all design guidelines combined" class="proj-img">
-      <div class="img-caption">Realizable domain in LP space — progressively constrained by applying all six design guidelines</div>
+      <img src="images/mt_research_gap.png" alt="Research gap — LP optimisation vs layup retrieval" class="proj-img proj-img--wide">
+      <div class="img-caption">
+        The research gap: disconnect between continuous LP optimisation and discrete layup retrieval
+        <span class="img-citation">Source: Bordogna, Macquart, Bettebghor & De Breuker — "Aeroelastic Optimization of Variable Stiffness Composite Wing with Blending Constraints," 17th AIAA/ISSMO Multidisciplinary Analysis and Optimization Conference, AIAA 2016-4122. DOI: 10.2514/6.2016-4122</span>
+      </div>
     </div>
   </section>
 
@@ -329,14 +336,9 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
       </div>
     </div>
 
-    <div class="content-card" style="margin-bottom:1.5rem">
-      <h4>Research Gap — Why This Matters</h4>
-      <p>When the first level optimisation selects LPs outside the realizable domain, the second level retrieval cannot reproduce the target stiffness. This creates a <span class="highlight">safety factor prediction error</span> — the optimised design on paper does not match the manufacturable layup in practice. This thesis characterises the realizable domain and constrains the first level to it, directly reducing this mismatch.</p>
-    </div>
-
     <div class="img-wrap">
-      <img src="images/mt_research_gap.png" alt="Research gap and motivation" class="proj-img">
-      <div class="img-caption">Research gap — the disconnect between continuous LP optimisation and discrete layup retrieval (Slide 10)</div>
+      <img src="images/mt_combined_anim1.gif" alt="Realizable LP domain — all design guidelines combined" class="proj-img proj-img--medium">
+      <div class="img-caption">Realizable domain in LP space — progressively constrained by applying all six design guidelines</div>
     </div>
 
     <h4 style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin:2rem 0 1rem;color:var(--white)">Benchmark Load Cases</h4>
@@ -443,8 +445,8 @@ body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;fo
       </div>
     </div>
     <div class="img-wrap">
-      <img src="images/mt_validation_results.png" alt="Validation results — SF mismatch before and after" class="proj-img">
-      <div class="img-caption">Validation results — SF mismatch per load case, before and after realizable domain constraint (Slide 21)</div>
+      <img src="images/mt_validation_results.png" alt="Safety factor mismatch reduction — before and after realizable domain constraint" class="proj-img proj-img--wide">
+      <div class="img-caption">SF mismatch per load case — before and after applying realizable domain constraints</div>
     </div>
   </section>
 
